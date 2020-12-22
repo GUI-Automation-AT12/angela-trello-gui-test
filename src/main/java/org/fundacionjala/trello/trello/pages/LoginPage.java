@@ -1,13 +1,11 @@
-package Trello.pageobjects;
+package org.fundacionjala.trello.trello.pages;
+import org.fundacionjala.trello.core.utils.WebElementsHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class LoginPage extends BasePage {
 
     @FindBy(id = "user")
     WebElement user;
@@ -16,22 +14,20 @@ public class LoginPage {
     @FindBy(id = "login")
     WebElement btnLogin;
 
-    public LoginPage(final WebDriver driver, final WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
-        PageFactory.initElements(driver, this);
+    public LoginPage(final WebDriver webDriver, final WebDriverWait webDriverWait) {
+        super(webDriver, webDriverWait);
     }
 
     public void setUserName(String strUser){
-        user.sendKeys(strUser);
+        WebElementsHelper.sendKeys(user, strUser);
     }
 
-    public void setPassword(String strPassword){
-        password.sendKeys(strPassword);
+    public void setPassword(String strPassword) {
+        WebElementsHelper.sendKeys(password, strPassword);
     }
 
     public void clickLogin(){
-        btnLogin.click();
+        WebElementsHelper.clickElement(btnLogin);
     }
 
     /**
@@ -40,10 +36,10 @@ public class LoginPage {
      * @param strPassword
      * @return
      */
-    public HomePage login(String strUser,String strPassword){
+    public HomePage login(String strUser,String strPassword) {
         this.setUserName(strUser);
         this.setPassword(strPassword);
         this.clickLogin();
-        return new HomePage(driver, wait);
+        return new HomePage(getWebDriver(), getWebDriverWait());
     }
 }

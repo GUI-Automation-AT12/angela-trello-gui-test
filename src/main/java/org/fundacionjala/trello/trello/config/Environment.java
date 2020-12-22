@@ -1,4 +1,4 @@
-package Trello.config;
+package org.fundacionjala.trello.trello.config;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -46,8 +46,8 @@ public final class Environment {
      *
      * @return User value.
      */
-    public String getUser() {
-        return getEnvProperty("user");
+    public String getEmail() {
+        return getEnvProperty("email");
     }
 
     /**
@@ -57,6 +57,14 @@ public final class Environment {
      */
     public String getPassword() {
         return getEnvProperty("password");
+    }
+
+    public String getBaseUrl() {
+        return getEnvProperty("baseUrl");
+    }
+
+    public String getBaseUrlApi() {
+        return getEnvProperty("baseUrlApi");
     }
 
     private String getEnvProperty(final String env) {

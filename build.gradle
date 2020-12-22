@@ -12,25 +12,76 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application.
     id 'application'
+    id "io.qameta.allure" version "2.8.1"
 }
+
+apply plugin: "io.qameta.allure"
 
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    mavenCentral()
 }
 
 dependencies {
-    // This dependency is used by the application.
+    compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '3.8.0'
     implementation 'com.google.guava:guava:29.0-jre'
-
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
+    compile group: 'org.json', name: 'json', version: '20180813'
+    compile 'com.googlecode.json-simple:json-simple:1.1.1'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
-
-    // Use JUnit test framework
-    testImplementation 'junit:junit:4.13'
+    testImplementation group: 'io.cucumber', name: 'cucumber-java', version: '5.7.0'
+    testImplementation group: 'io.cucumber', name: 'cucumber-testng', version: '5.7.0'
+    testImplementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: '5.7.0'
+    implementation group: 'io.rest-assured', name: 'rest-assured', version: '4.3.2'
+    implementation group: 'io.rest-assured', name: 'json-schema-validator', version: '4.3.2'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.6.0'
+    compile group: 'io.cucumber', name: 'cucumber-testng', version: '5.7.0'
+    testImplementation group: 'io.qameta.allure', name: 'allure-cucumber5-jvm', version: '2.13.6'
 }
 
 application {
     // Define the main class for the application.
     mainClassName = 'Trello.App'
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+test {
+    useTestNG()
+    exclude 'org/fundacionjala/trello/runner/**'
+    include 'org/fundacionjala/trello/unit/**'
+    systemProperty 'usedefaultlisteners', false
+    //systemProperty 'listener', 'com.epam.reportportal.testng.ReportPortalTestNGListener'
+    testLogging {
+        events 'PASSED', 'STARTED', 'FAILED', 'SKIPPED'
+    }
+}
+
+allure {
+    version = '2.8.1'
+    autoconfigure = true
+    aspectjweaver = true
+    allureJavaVersion = '2.13.6'
+}
+
+task executeBDDTests(type: Test) {
+    useTestNG()
+    exclude 'org/fundacionjala/trello/unit/**'
+    //exclude 'src/test/java/Trello/**'
+    options {
+        useDefaultListeners = false
+        jvmArgs = ['-Demail=' + email]
+        jvmArgs = ['-Dpassword=' + password]
+    }
+    testLogging.showStandardStreams = true
+    scanForTestClasses = false
+    //finalizedBy 'allureReport'
 }

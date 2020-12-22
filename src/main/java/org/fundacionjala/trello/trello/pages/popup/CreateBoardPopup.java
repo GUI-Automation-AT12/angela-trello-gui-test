@@ -1,22 +1,18 @@
-package Trello.pageobjects;
+package org.fundacionjala.trello.trello.pages.popup;
 
+import org.fundacionjala.trello.core.utils.WebElementsHelper;
+import org.fundacionjala.trello.trello.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CreateBoard {
-    WebDriver driver;
-    WebDriverWait wait;
+public class CreateBoardPopup extends BasePage {
+    WebDriver webDriver;
+    WebDriverWait webDriverWait;
 
     @FindBy(css = "div#layer-manager-overlay span[class*='ifeHxY']")
     WebElement popupAtlasian; //wait
-    @FindBy(css = "div#header span[aria-label='AddIcon']")
-    WebElement btnAdd;
-    @FindBy(css = "button[data-test-id='header-create-board-button']")
-    WebElement btnAddBoard;
     @FindBy(css = "input[data-test-id='create-board-title-input']")
     WebElement inputBoardName; //wait
     @FindBy(css = ".\\_1se-PM9Q1YyEtg > .sc-bdVaJa")
@@ -28,39 +24,26 @@ public class CreateBoard {
     @FindBy(css = ".board-header-btn-text")
     WebElement nameBoardCreated;
 
-    public CreateBoard(final WebDriver driver, final WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
-        PageFactory.initElements(driver, this);
+    public CreateBoardPopup(final WebDriver webDriver, final WebDriverWait webDriverWait) {
+       super(webDriver, webDriverWait);
     }
 
-    public void closePopupAtlasian(){
+    public void closePopupAtlasian() {
         WebElement popup = waitElement(popupAtlasian);
         popup.click();
     }
 
-    public void clickAdd(){
-        btnAdd.click();
-    }
-
-    public void clickAddBoard(){
-        btnAddBoard.click();
-    }
-
-    public void insertNameBoard(String nameBoard){
-        inputBoardName.sendKeys(nameBoard);
+    public void insertNameBoard(final String nameBoard){
+        WebElementsHelper.sendKeys(inputBoardName,nameBoard);
     }
     public void clickSelectTeam(){
-        selectTeam.click();
+        WebElementsHelper.clickElement(selectTeam);
     }
     public void clickSListTeam(){
-        listTeams.click();
+        WebElementsHelper.clickElement(listTeams);
     }
     public void clickSubmit(){
-        submit.click();
-    }
-    public WebElement waitElement(WebElement element) {
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
+        WebElementsHelper.clickElement(submit);
     }
 
     public String getNameBoard() {
@@ -72,11 +55,9 @@ public class CreateBoard {
      * @param nameBoard
      * @return
      */
-    public void createBoard(String nameBoard){
-        this.waitElement(popupAtlasian);
-        this.closePopupAtlasian();
-        this.clickAdd();
-        this.clickAddBoard();
+    public void createBoard(String nameBoard) {
+        //this.waitElement(popupAtlasian);
+        //this.closePopupAtlasian();
         this.waitElement(inputBoardName);
         this.insertNameBoard(nameBoard);
         this.clickSelectTeam();
