@@ -10,7 +10,8 @@ public class NavigationSteps {
     public  NavigationSteps(final Context context) {
         this.context = context;
     }
-    @When("I navigate to (.*?) section")
+
+    @When("I navigate to {word} section")
     public void navigateToProfilePage(final String pageName) throws MalformedURLException {
         TransporterPage.navigateToPage(pageName);
     }

@@ -42,8 +42,7 @@ public final class Environment {
     }
 
     /**
-     * get the User from the file.properties.
-     *
+     * Gets the User from the file.properties.
      * @return User value.
      */
     public String getEmail() {
@@ -51,18 +50,25 @@ public final class Environment {
     }
 
     /**
-     * get the password from the file.properties.
-     *
+     * Gets the password from the file.properties.
      * @return Password value.
      */
     public String getPassword() {
         return getEnvProperty("password");
     }
 
+    /**
+     * Gets the base url.
+     * @return baseUrl
+     */
     public String getBaseUrl() {
         return getEnvProperty("baseUrl");
     }
 
+    /**
+     * Gets base url for API.
+     * @return baseUrlApi
+     */
     public String getBaseUrlApi() {
         return getEnvProperty("baseUrlApi");
     }

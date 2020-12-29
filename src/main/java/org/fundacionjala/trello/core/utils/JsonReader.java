@@ -8,10 +8,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class JsonReader {
+public final class JsonReader {
+    /**
+     * Contructor.
+     */
+    private JsonReader() { }
 
-    //@SuppressWarnings("unchecked")
-    public static HashMap<String,Object> readJsonFile(String path) throws IOException, ParseException {
+    /**
+     * Reads information from json file.
+     * @param path
+     * @return HashMap
+     * @throws IOException
+     * @throws ParseException
+     */
+    public static HashMap<String, Object> readJsonFile(final String path) throws IOException, ParseException {
         Object obj = new JSONParser().parse(new FileReader(path));
         JSONObject jsonObject = (JSONObject) obj;
         return new ObjectMapper().readValue(jsonObject.toJSONString(), HashMap.class);

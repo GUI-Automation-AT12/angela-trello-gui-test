@@ -11,21 +11,37 @@ public abstract class BasePage {
     private WebDriver webDriver;
     private WebDriverWait webDriverWait;
 
-    public BasePage(final WebDriver driver, final WebDriverWait wait) {
+    /**
+     * Constructor.
+     */
+    public BasePage() {
         this.webDriver = WebDriverManager.getInstance().getWebDriver();
         this.webDriverWait = WebDriverManager.getInstance().getWebDriverWait();
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(webDriver, this);
     }
 
+    /**
+     * Gets WebDriver.
+     * @return WebDriver
+     */
     public WebDriver getWebDriver() {
         return webDriver;
     }
 
+    /**
+     * Gets WebDriverWait.
+     * @return WebDriverWait
+     */
     public WebDriverWait getWebDriverWait() {
         return webDriverWait;
     }
 
-    public WebElement waitElement(WebElement element) {
+    /**
+     * Waits for a web element.
+     * @param element
+     * @return WebElement
+     */
+    public WebElement waitElement(final WebElement element) {
         return webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
     }
 }

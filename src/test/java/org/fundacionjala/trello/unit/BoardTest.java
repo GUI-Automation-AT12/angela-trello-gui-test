@@ -38,12 +38,11 @@ public class BoardTest {
     @Test
     public void createBoard() {
         String  expectedResult = "testBoard7";
-        InitialPage initialPage = new InitialPage(driver, wait);
+        InitialPage initialPage = new InitialPage();
         LoginAtlassianPage loginAtlassianPage = initialPage.clickInitSessionAtlassian();
         loginAtlassianPage.login(Environment.getInstance().getEmail(), Environment.getInstance().getPassword());
-        HomePage homePage = new HomePage(driver, wait);
-        TopMenu topMenu = homePage.clickAdd();
-        CreateBoardPopup board = topMenu.clickAddBoard();
+        HomePage homePage = new HomePage();
+        CreateBoardPopup board = homePage.getTopMenu().clickAddBoard();
         board.createBoard(expectedResult);
         String  actualResult = board.getNameBoard();
         assertEquals(expectedResult, actualResult);

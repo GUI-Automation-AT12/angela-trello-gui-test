@@ -4,23 +4,40 @@ public class Board {
     private String name;
     private String desc;
 
-    public void setName(String name) {
-        this.name = name;
+    /**
+     * Constructor.
+     */
+    public Board() {
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    /**
+     * Sets name.
+     * @param newName
+     */
+    public void setName(final String newName) {
+        this.name = newName;
     }
 
-    public Board(String name, String desc) {
-        this.name = name;
-        this.desc = desc;
+    /**
+     * Sets description.
+     * @param newDesc
+     */
+    public void setDesc(final String newDesc) {
+        this.desc = newDesc;
     }
 
+    /**
+     * Gets name.
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets description.
+     * @return description
+     */
     public String getDesc() {
         return desc;
     }

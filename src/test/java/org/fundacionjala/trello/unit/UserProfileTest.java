@@ -1,17 +1,13 @@
 package org.fundacionjala.trello.unit;
 
 import org.fundacionjala.trello.core.WebDriverManager;
-import org.fundacionjala.trello.core.utils.user.UserReader;
 import org.fundacionjala.trello.trello.config.Environment;
 import org.fundacionjala.trello.trello.entities.User;
 import org.fundacionjala.trello.trello.pages.InitialPage;
 import org.fundacionjala.trello.trello.pages.LoginAtlassianPage;
 import org.fundacionjala.trello.trello.pages.ProfilePage;
 import org.fundacionjala.trello.trello.pages.TransporterPage;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import org.json.simple.parser.ParseException;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
@@ -19,7 +15,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,7 +41,7 @@ public class UserProfileTest {
 
     @Test
     public void fillProfile() throws IOException, ParseException {
-        InitialPage initialPage = new InitialPage(webDriver, webDriverWait);
+        /*InitialPage initialPage = new InitialPage(webDriver, webDriverWait);
         LoginAtlassianPage loginAtlassianPage = initialPage.clickInitSessionAtlassian();
         loginAtlassianPage.login(Environment.getInstance().getEmail(), Environment.getInstance().getPassword());
         TransporterPage.navigateToPage("PROFILE");
@@ -56,6 +51,6 @@ public class UserProfileTest {
         User user = new User();
         user.processInformation(map);
         ProfilePage profilePage = new ProfilePage(webDriver, webDriverWait);
-        user.processUIInformation(map, profilePage);
+        user.processUIInformation(map, profilePage);*/
     }
 }

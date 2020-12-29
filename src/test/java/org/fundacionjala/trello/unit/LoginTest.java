@@ -44,7 +44,7 @@ public class LoginTest {
 
     @Test
     public void loginWithValidCredentialsInAtlassian() {
-        InitialPage initialPage = new InitialPage(webDriver, webDriverWait);
+        InitialPage initialPage = new InitialPage();
         LoginAtlassianPage loginAtlassianPage = initialPage.clickInitSessionAtlassian();
         loginAtlassianPage.login(Environment.getInstance().getEmail(), Environment.getInstance().getPassword());
     }

@@ -2,6 +2,7 @@ package org.fundacionjala.trello.runner;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+import org.fundacionjala.trello.core.WebDriverManager;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -12,7 +13,7 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         plugin = {"pretty"},
         features = {"src/test/resources/features"},
-        glue = {"org/fundacionjala/trello"}
+        glue = {"org.fundacionjala.trello.stepdefs"}
 )
 
 public final class Runner extends AbstractTestNGCucumberTests {
@@ -28,6 +29,7 @@ public final class Runner extends AbstractTestNGCucumberTests {
     @BeforeTest
     public void beforeAllScenarios() {
         //System.setProperty("dataproviderthreadcount", Environment.getInstance().getCucumberThreadCount());
+        WebDriverManager.getInstance().getWebDriver();
     }
 
     /**
@@ -35,7 +37,7 @@ public final class Runner extends AbstractTestNGCucumberTests {
      */
     @AfterTest
     public void afterAllScenarios() {
-        // Code executed after features execution.
+        WebDriverManager.getInstance().getWebDriver().quit();
     }
 }
 

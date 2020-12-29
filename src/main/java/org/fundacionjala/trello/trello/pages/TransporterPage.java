@@ -7,19 +7,50 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
-public class TransporterPage {
-    private static final HashMap<String, String> PAGE_URL = new HashMap<>();
+public final class TransporterPage {
+    public static final HashMap<String, String> PAGE_URL = new HashMap<>();
     static {
         //User Profile
-        PAGE_URL.put("PROFILE", "mariangela");
-        PAGE_URL.put("SETTINGS", "settings");
-    }
-    public static void navigateToPage(final String pageName) throws MalformedURLException {
-        navigateToUrl(Environment.getInstance().getBaseUrl().concat(PAGE_URL.get(pageName)));
-
+        PAGE_URL.put("Profile", "angelamariela/profile");
+        PAGE_URL.put("Settings", "settings");
     }
 
+    /**
+     * Constructor.
+     */
+    private TransporterPage() {
+    }
+
+    /**
+     * Navigates to url.
+     * @param url
+     * @throws MalformedURLException
+     */
     private static void navigateToUrl(final String url) throws MalformedURLException {
         WebDriverManager.getInstance().getWebDriver().navigate().to(new URL(url));
+    }
+
+    /**
+     * Navigates to a page.
+     * @param pageName
+     * @throws MalformedURLException
+     */
+    public static void navigateToPage(final String pageName) throws MalformedURLException {
+        navigateToUrl(Environment.getInstance().getBaseUrl().concat(PAGE_URL.get(pageName)));
+    }
+
+    /**
+     * Navigates to a base page.
+     * @throws MalformedURLException
+     */
+    public static void navigateToPage() {
+        WebDriverManager.getInstance().getWebDriver().get(Environment.getInstance().getBaseUrl());
+    }
+
+    /**
+     * Refreshes the page.
+     */
+    public static void refreshPage() {
+        WebDriverManager.getInstance().getWebDriver().navigate().refresh();
     }
 }

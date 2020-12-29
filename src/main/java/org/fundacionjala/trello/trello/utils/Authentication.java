@@ -6,7 +6,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.http.entity.ContentType;
 
-public class Authentication {
+public final class Authentication {
 
     private static final String BASE_URL_API = Environment.getInstance().getBaseUrl();
     private static final String USERNAME_VAL = Environment.getInstance().getEmail();

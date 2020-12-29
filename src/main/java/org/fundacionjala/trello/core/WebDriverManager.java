@@ -1,35 +1,57 @@
 package org.fundacionjala.trello.core;
 
+import org.fundacionjala.trello.core.webdrivers.DriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.concurrent.TimeUnit;
 
-public class WebDriverManager {
+public final class WebDriverManager {
     private static WebDriverManager webDriverManager;
     private WebDriver webDriver;
     private WebDriverWait webDriverWait;
 
-    public WebDriverManager() {
-        System.setProperty("webdriver.chrome.driver", "webdriver/chromedriver.exe");
-        webDriver = new ChromeDriver();
+    /**
+     * Constructor.
+     */
+    private WebDriverManager() {
+        webDriver = DriverFactory.getWebDriver("chrome").initDriver();
+        int implicitWait = DriverFactory.getWebDriver("chrome").getImplicitWait();
+        int explicitWait = DriverFactory.getWebDriver("chrome").getExplicitWait();
         webDriver.manage().window().maximize();
-        //webDriver.manage().timeouts().implicitlyWait(30,40);
-        webDriverWait = new WebDriverWait(webDriver, 30);
+        webDriver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
+        webDriverWait = new WebDriverWait(webDriver, explicitWait);
     }
+
+    /**
+     * Gets instance.
+     * @return a instance of WebDriverManager
+     */
     public static WebDriverManager getInstance() {
         if (webDriverManager == null) {
             webDriverManager = new WebDriverManager();
         }
         return webDriverManager;
     }
+
+    /**
+     * Gets WebDRIVER.
+     * @return WebDriver
+     */
     public WebDriver getWebDriver() {
         return webDriver;
     }
 
+    /**
+     * Gets WebDriverWait.
+     * @return WebDriverWait
+     */
     public WebDriverWait getWebDriverWait() {
         return webDriverWait;
     }
 
+    /**
+     * Quite.
+     */
     public void quite() {
         webDriverManager = null;
         webDriver.quit();
