@@ -1,43 +1,22 @@
 package org.fundacionjala.trello.trello.utils;
 
-import org.fundacionjala.trello.trello.config.Environment;
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
+import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import org.apache.http.entity.ContentType;
+import org.fundacionjala.trello.trello.config.EnvironmentApi;
 
 public final class Authentication {
-
-    private static final String BASE_URL_API = Environment.getInstance().getBaseUrl();
-    private static final String USERNAME_VAL = Environment.getInstance().getEmail();
-    private static final String PWD_VAL = Environment.getInstance().getPassword();
-    private static final String USERNAME = "username";
-    private static final String PWD = "password";
-    private static final String PATH = "login";
+    private static final String BASE_URL_API = EnvironmentApi.getInstance().getBaseUrlApi();
+    private static final String API_KEY = EnvironmentApi.getInstance().getEnvApiKey();
+    private static final String API_TOKEN = EnvironmentApi.getInstance().getEnvApiToken();
+    private static final String KEY = "key";
+    private static final String TOKEN = "token";
 
     /**
-     * Constructor for AuthenticationUtils.
+     * Constructor for Authentication.
      */
     private Authentication() {
 
-    }
-
-    /**
-     * Get id session of authentication.
-     *
-     * @return a String.
-     */
-    private static String getCookie() {
-        RestAssured.baseURI = BASE_URL_API;
-        Response response = RestAssured
-                .given()
-                .contentType(ContentType.MULTIPART_FORM_DATA.toString())
-                .multiPart(USERNAME, USERNAME_VAL)
-                .multiPart(PWD, PWD_VAL)
-                .when()
-                .post("/" + PATH);
-
-        return response.getDetailedCookie("JSESSIONID").toString();
     }
 
     /**
@@ -47,8 +26,10 @@ public final class Authentication {
      */
     public static RequestSpecification getLoggedReqSpec() {
         RequestSpecification request = RestAssured.given();
-        request.baseUri(BASE_URL_API);
-        request.cookie(getCookie());
+        request.baseUri(BASE_URL_API)
+                .contentType(ContentType.JSON.toString())
+                .queryParam(KEY, API_KEY)
+                .queryParam(TOKEN, API_TOKEN);
         return request;
     }
 
@@ -60,6 +41,32 @@ public final class Authentication {
     public static RequestSpecification getNotLoggedReqSpec() {
         RequestSpecification request = RestAssured.given();
         request.baseUri(BASE_URL_API);
+        return request;
+    }
+
+    /**
+     * Get request specifications.
+     *
+     * @return request.
+     */
+    public static RequestSpecification getNotLoggedWithKeyReqSpec() {
+        RequestSpecification request = RestAssured.given();
+        request.baseUri(BASE_URL_API)
+                .contentType(ContentType.JSON.toString())
+                .queryParam(KEY, API_KEY);
+        return request;
+    }
+
+    /**
+     * Get request specifications.
+     *
+     * @return request.
+     */
+    public static RequestSpecification getNotLoggedWithTokenReqSpec() {
+        RequestSpecification request = RestAssured.given();
+        request.baseUri(BASE_URL_API)
+                .contentType(ContentType.JSON.toString())
+                .queryParam(TOKEN, API_TOKEN);
         return request;
     }
 }

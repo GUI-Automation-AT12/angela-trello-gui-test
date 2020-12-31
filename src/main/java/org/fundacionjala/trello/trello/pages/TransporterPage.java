@@ -12,6 +12,7 @@ public final class TransporterPage {
     static {
         //User Profile
         PAGE_URL.put("Profile", "angelamariela/profile");
+        PAGE_URL.put("Board", "angelamariela/boards");
         PAGE_URL.put("Settings", "settings");
     }
 

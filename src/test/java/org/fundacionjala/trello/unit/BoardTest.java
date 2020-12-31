@@ -4,7 +4,6 @@ import org.fundacionjala.trello.trello.config.Environment;
 import org.fundacionjala.trello.core.WebDriverManager;
 import org.fundacionjala.trello.trello.pages.*;
 import org.fundacionjala.trello.trello.pages.popup.CreateBoardPopup;
-import org.fundacionjala.trello.trello.pages.topmenu.TopMenu;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -42,9 +41,9 @@ public class BoardTest {
         LoginAtlassianPage loginAtlassianPage = initialPage.clickInitSessionAtlassian();
         loginAtlassianPage.login(Environment.getInstance().getEmail(), Environment.getInstance().getPassword());
         HomePage homePage = new HomePage();
-        CreateBoardPopup board = homePage.getTopMenu().clickAddBoard();
-        board.createBoard(expectedResult);
-        String  actualResult = board.getNameBoard();
+        CreateBoardPopup board = homePage.getTopMenu().clickAddButton().clickAddBoardBtn();
+        BoardPage boardPage = board.createBoard(expectedResult);
+        String  actualResult = boardPage.getNameBoardCreated();
         assertEquals(expectedResult, actualResult);
     }
 }

@@ -1,7 +1,7 @@
 @UserProfile
 Feature: Update user's profile
 
-  //@ResetUserInformation
+  @Functional @ResetUserInformation
   Scenario: Update user's information in Profile and Visibility section
     Given I log in to Trello with Editable user credentials
     When I navigate to Profile section

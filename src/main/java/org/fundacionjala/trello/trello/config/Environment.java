@@ -65,14 +65,6 @@ public final class Environment {
         return getEnvProperty("baseUrl");
     }
 
-    /**
-     * Gets base url for API.
-     * @return baseUrlApi
-     */
-    public String getBaseUrlApi() {
-        return getEnvProperty("baseUrlApi");
-    }
-
     private String getEnvProperty(final String env) {
         String localProperty = System.getProperty(env);
         if (localProperty == null) {
@@ -87,6 +79,14 @@ public final class Environment {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * Gets browser.
+     * @return browser
+     */
+    public String getBrowser() {
+        return getEnvProperty("browser");
     }
 }
 

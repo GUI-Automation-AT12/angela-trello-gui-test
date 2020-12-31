@@ -1,6 +1,7 @@
 package org.fundacionjala.trello.core;
 
 import org.fundacionjala.trello.core.webdrivers.DriverFactory;
+import org.fundacionjala.trello.trello.config.Environment;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.concurrent.TimeUnit;
@@ -9,14 +10,15 @@ public final class WebDriverManager {
     private static WebDriverManager webDriverManager;
     private WebDriver webDriver;
     private WebDriverWait webDriverWait;
+    private String browser = Environment.getInstance().getBrowser();
 
     /**
      * Constructor.
      */
     private WebDriverManager() {
-        webDriver = DriverFactory.getWebDriver("chrome").initDriver();
-        int implicitWait = DriverFactory.getWebDriver("chrome").getImplicitWait();
-        int explicitWait = DriverFactory.getWebDriver("chrome").getExplicitWait();
+        webDriver = DriverFactory.getWebDriver(browser).initDriver();
+        int implicitWait = DriverFactory.getWebDriver(browser).getImplicitWait();
+        int explicitWait = DriverFactory.getWebDriver(browser).getExplicitWait();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
         webDriverWait = new WebDriverWait(webDriver, explicitWait);

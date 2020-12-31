@@ -71,7 +71,6 @@ public class User {
     public void processInformation(final Map<String, String> userInformation) {
         HashMap<String, Runnable> strategyMap = composeStrategyMap(userInformation);
         userInformation.keySet().forEach(key -> strategyMap.get(key).run());
-        //revisar si funciona o solo es referencia , sino jala en cada seter añadir field
         updatedFields = userInformation.keySet();
     }
 

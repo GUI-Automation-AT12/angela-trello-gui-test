@@ -57,7 +57,7 @@ public class LoginAtlassianPage extends BasePage {
         this.setPassword(strPassword);
         this.clickLoginAtlassian();
         HomePage homePage = new HomePage();
-        waitElement(homePage.getTopMenu().getBtnAddBoard());
+        waitElement(homePage.getTopMenu().getAddButton());
         return homePage;
     }
 }
