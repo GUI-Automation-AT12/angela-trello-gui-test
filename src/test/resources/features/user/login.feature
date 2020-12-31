@@ -1,6 +1,7 @@
 Feature: Login in Trello
   In order to login in Trello
 
+  @Functional
   Scenario: Log in with valid credentials
     Given I'm in Login page
     When I set user and password

@@ -15,7 +15,7 @@ public class FireFox implements IDriver {
      */
     @Override
     public WebDriver initDriver() {
-        FirefoxDriverManager.getInstance(DriverManagerType.FIREFOX).setup();
+        FirefoxDriverManager.getInstance(DriverManagerType.FIREFOX).version("84.0.1").setup();
         return new FirefoxDriver();
     }
 

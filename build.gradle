@@ -92,8 +92,25 @@ task executeBDDTests(type: Test) {
     exclude 'org/fundacionjala/trello/unit/**'
     options {
         useDefaultListeners = false
+        jvmArgs = ['-Dcucumber.plugin=io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm']
+        jvmArgs = ['-Dcucumber.plugin=rerun:build/target/rerun.txt']
+        jvmArgs = ['-DcucumberThreadCount=' + cucumberThreadCount]
+        jvmArgs = ['-DfilterTags=' + filterTags]
         jvmArgs = ['-Demail=' + email]
         jvmArgs = ['-Dpassword=' + password]
+    }
+    testLogging.showStandardStreams = true
+    scanForTestClasses = false
+    finalizedBy 'allureReport'
+}
+
+task reRunBDDTests(type: Test) {
+    useTestNG()
+    options {
+        useDefaultListeners = false
+        jvmArgs = ['-Dcucumber.plugin=io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm']
+        jvmArgs = ['-Dcucumber.plugin=rerun:build/target/rerun.txt']
+        jvmArgs = ['-DcucumberThreadCount=' + cucumberThreadCount]
     }
     testLogging.showStandardStreams = true
     scanForTestClasses = false

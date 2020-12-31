@@ -88,6 +88,22 @@ public final class Environment {
     public String getBrowser() {
         return getEnvProperty("browser");
     }
+
+    /**
+     * Get quantity of threads.
+     * @return cucumberThreadCount
+     */
+    public String getCucumberThreadCount() {
+        return getEnvProperty("cucumberThreadCount");
+    }
+
+    /**
+     * Get filter tags.
+     * @return filterTags
+     */
+    public String getFilterTags() {
+        return getEnvProperty("filterTags");
+    }
 }
 
 

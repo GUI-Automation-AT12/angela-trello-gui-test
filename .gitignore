@@ -3,4 +3,7 @@ appengine-generated/
 .idea
 .gradle
 /build
-
+debug.log
+target
+webdriver
+.allure

@@ -1,7 +1,7 @@
 @List
 Feature: Create a list
 
-  @DeleteList
+  @DeleteList @Functional
   Scenario: Create a list
     #Given I log in to Trello with valid credentials
     #When I navigate to Board page

@@ -15,7 +15,7 @@ public class Chrome implements IDriver {
      */
     @Override
     public WebDriver initDriver() {
-        ChromeDriverManager.getInstance(DriverManagerType.CHROME).setup();
+        ChromeDriverManager.getInstance(DriverManagerType.CHROME).version("87.0").setup();
         return new ChromeDriver();
     }
 
