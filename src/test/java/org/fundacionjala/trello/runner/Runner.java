@@ -11,9 +11,11 @@ import org.testng.annotations.DataProvider;
  * Cucumber TestNG runner class.
  */
 @CucumberOptions(
-        plugin = {"pretty"},
         features = {"src/test/resources/features"},
-        glue = {"org.fundacionjala.trello.stepdefs"}
+        glue = {"org.fundacionjala.trello.stepdefs"},
+        plugin = {"pretty", "html:test-output", "json:target/cucumber-report/cucumber.json",
+        "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"}
+
 )
 
 public final class Runner extends AbstractTestNGCucumberTests {

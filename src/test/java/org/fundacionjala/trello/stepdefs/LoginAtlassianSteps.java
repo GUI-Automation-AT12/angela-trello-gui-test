@@ -20,7 +20,7 @@ public class LoginAtlassianSteps {
     private HomePage homePage;
     private Context context;
 
-    public  LoginAtlassianSteps(final Context sharedContext) {
+    public LoginAtlassianSteps(final Context sharedContext) {
         this.context = sharedContext;
     }
 
