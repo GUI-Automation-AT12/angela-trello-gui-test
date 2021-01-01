@@ -4,12 +4,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * PropertiesReader class.
  */
 public final class Environment {
-
+    private static final Logger LOGGER = LogManager.getLogger(Environment.class);
     private static final String PATH = "gradle.properties";
     private static Environment singleInstance;
     private Properties property;
@@ -21,9 +23,9 @@ public final class Environment {
             property = new Properties();
             property.load(reader);
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
         } finally {
             closeReader();
         }
@@ -77,7 +79,7 @@ public final class Environment {
         try {
             reader.close();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
     }
 
