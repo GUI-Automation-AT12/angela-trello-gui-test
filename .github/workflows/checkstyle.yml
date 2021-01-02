@@ -1,4 +1,4 @@
-name: Java CI with Gradle
+name: Checkstyle
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
       - name: Assemble the project
         run: ./gradlew assemble
       - name: Build with Gradle
-        run: ./gradlew check
+        run: ./gradlew checkstyleMain
       - name: Style Code Report
         if: failure()
         uses: actions/upload-artifact@v2
