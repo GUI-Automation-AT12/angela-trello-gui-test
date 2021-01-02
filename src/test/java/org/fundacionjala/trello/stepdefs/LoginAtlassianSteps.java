@@ -2,11 +2,9 @@ package org.fundacionjala.trello.stepdefs;
 
 import org.fundacionjala.trello.core.context.Context;
 import org.fundacionjala.trello.trello.config.Environment;
-import org.fundacionjala.trello.core.WebDriverManager;
 import org.fundacionjala.trello.trello.pages.HomePage;
 import org.fundacionjala.trello.trello.pages.InitialPage;
 import org.fundacionjala.trello.trello.pages.LoginAtlassianPage;
-import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,10 +18,18 @@ public class LoginAtlassianSteps {
     private HomePage homePage;
     private Context context;
 
+    /**
+     * Constructor.
+     * @param sharedContext
+     */
     public LoginAtlassianSteps(final Context sharedContext) {
         this.context = sharedContext;
     }
 
+    /**
+     * Go login page.
+     * @throws MalformedURLException
+     */
     @Given("I'm in Login page")
     public void stayInLoginPage() throws MalformedURLException {
         TransporterPage.navigateToPage();
@@ -31,24 +37,28 @@ public class LoginAtlassianSteps {
         loginAtlassianPage = initialPage.clickInitSessionAtlassian();
     }
 
+    /**
+     * Set use and password.
+     */
     @When("I set user and password")
     public void setUserAndPassword() {
-        homePage = loginAtlassianPage.login(Environment.getInstance().getEmail(), Environment.getInstance().getPassword());
-        //loginAtlassianPage.login(context.getEmail(kindUser), context.getPassword(kindUser));
+        homePage = loginAtlassianPage.login(Environment.getInstance().getEmail(),
+                Environment.getInstance().getPassword());
     }
 
+    /**
+     * Verify if homePage is displayed.
+     */
     @Then("the Home Page should be displayed")
     public void verifyHomePageIsDisplayed() {
         Assert.assertNotNull(homePage);
     }
 
+    /**
+     * Set user and password empty.
+     */
     @When("I set user and password with empty fields")
-    public void iSetUserAndPasswordWithEmptyFields() {
+    public void setUserAndPasswordWithEmptyFields() {
         homePage = loginAtlassianPage.login("", "");
     }
-
-    /*@After
-    public void end() {
-        WebDriverManager.getInstance().quite();
-    }*/
 }

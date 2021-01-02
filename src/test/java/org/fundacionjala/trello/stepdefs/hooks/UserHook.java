@@ -4,9 +4,11 @@ import io.cucumber.java.After;
 import org.fundacionjala.trello.core.context.Context;
 import org.fundacionjala.trello.core.utils.user.UserReader;
 import org.fundacionjala.trello.trello.entities.User;
-import org.fundacionjala.trello.trello.pages.*;
+import org.fundacionjala.trello.trello.pages.InitialPage;
+import org.fundacionjala.trello.trello.pages.LoginAtlassianPage;
+import org.fundacionjala.trello.trello.pages.ProfilePage;
+import org.fundacionjala.trello.trello.pages.TransporterPage;
 import org.json.simple.parser.ParseException;
-import org.testng.annotations.AfterTest;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,6 +27,11 @@ public class UserHook {
         this.context = sharedContext;
     }
 
+    /**
+     * Reset user' information.
+     * @throws IOException
+     * @throws ParseException
+     */
     @After(value = "@ResetUserInformation", order = 1)
     public void restoreUserProfile() throws IOException, ParseException {
         User user = new User();
@@ -35,7 +42,8 @@ public class UserHook {
         TransporterPage.navigateToPage();
         InitialPage initialPage = new InitialPage();
         loginAtlassianPage = initialPage.clickInitSessionAtlassian();
-        loginAtlassianPage.login(UserReader.getEmail(context.getValueData("typeUser")), UserReader.getPassword(context.getValueData("typeUser")));
+        loginAtlassianPage.login(UserReader.getEmail(context.getValueData("typeUser")),
+                UserReader.getPassword(context.getValueData("typeUser")));
         profilePage.updateProfile(user);
     }
 }

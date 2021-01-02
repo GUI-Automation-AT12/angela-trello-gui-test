@@ -9,6 +9,10 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertNotNull;
 
 public class AppTest {
+
+    /**
+     * Greeting test.
+     */
     @Test
     public void testAppHasAGreeting() {
         App classUnderTest = new App();

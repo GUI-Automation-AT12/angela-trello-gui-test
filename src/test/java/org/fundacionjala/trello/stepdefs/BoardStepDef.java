@@ -20,11 +20,19 @@ public class BoardStepDef {
     private Board board;
     private BoardPage boardPage;
 
+    /**
+     * Constructor.
+     * @param sharedContext
+     */
     public BoardStepDef(final Context sharedContext) {
         this.context = sharedContext;
         board = new Board();
     }
 
+    /**
+     * Create a new board.
+     * @param boardInformation
+     */
     @And("I create a board with the following form data")
     public void createBoardWithTheFollowingFormData(final Map<String, String> boardInformation) {
         addComponentPopup = topMenu.clickAddButton();
@@ -33,6 +41,9 @@ public class BoardStepDef {
         boardPage = createBoard.createBoard(board);
     }
 
+    /**
+     * Verify new board is created.
+     */
     @Then("the board should be created")
     public void verifyBoardIsCreated() {
         String actualName = boardPage.getNameBoardCreated();

@@ -8,8 +8,12 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class ScenarioHook {
 
+    /**
+     * After each scenario.
+     * @param scenario
+     */
     @After(value = "@Functional", order = 0)
-    public void afterTest(Scenario scenario) {
+    public void afterTest(final Scenario scenario) {
         String screensHostName = scenario.getName().replaceAll(" ", "_");
         if (scenario.isFailed()) {
             try {
