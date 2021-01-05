@@ -24,8 +24,8 @@ public class OrganizationHook {
     /**
      * Delete the board after execute Stepdefs with the deleteBoard tag.
      */
-    @After(value = "@deleteOrganization", order = 1)
-    public void deleteOrganization() {
+    @After(value = "@DeleteOrganization", order = 1)
+    public void deleteOrganizationApi() {
         String idOrganization = context.getDataCollection("organization").get("id");
         RequestManager.setRequestSpec(Authentication.getLoggedReqSpec());
         String endpoint = EnvironmentApi.getInstance().getBaseUrlApi().concat("/organizations/").concat(idOrganization);
@@ -35,11 +35,11 @@ public class OrganizationHook {
     /**
      * Creates thee board before execute the step with the createBoard tag.
      */
-    @Before(value = "@createOrganization", order = 0)
+    @Before(value = "@CreateOrganization", order = 0)
     public void createOrganization() {
-        String endpoint = EnvironmentApi.getInstance().getBaseUrlApi() + "/cards/";
+        String endpoint = EnvironmentApi.getInstance().getBaseUrlApi() + "/organizations/";
         JSONObject json = new JSONObject();
-        json.put("name", context.getValueData("teamName"));
+        json.put("displayName", "teamName");
         RequestManager.setRequestSpec(Authentication.getLoggedReqSpec());
         Response response = RequestManager.post(endpoint, json.toString());
         context.saveDataCollection("organization", response.jsonPath().getMap(""));

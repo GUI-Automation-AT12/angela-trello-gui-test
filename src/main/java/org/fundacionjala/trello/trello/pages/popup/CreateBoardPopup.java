@@ -10,42 +10,52 @@ import org.openqa.selenium.support.FindBy;
 import java.util.HashMap;
 
 public class CreateBoardPopup extends BasePage {
+    private static final String PRIVATE = "private";
+    private static final String TEAM = "team";
+
     @FindBy(css = "div#layer-manager-overlay span[class*='ifeHxY']")
     private WebElement popupAtlasian; //wait
+
     @FindBy(css = "input[data-test-id='create-board-title-input']")
     private WebElement inputBoardName; //wait
+
     @FindBy(xpath = "//input[@data-test-id='create-board-title-input']/following-sibling::button[1]")
     private WebElement selectTeam; //team
+
     @FindBy(css = "section.js-react-root li:first-child")
     private WebElement listTeams; //listTeams
+
     @FindBy(css = "button[data-test-id='create-board-submit-button']")
     private WebElement submit; //listTeams
+
     @FindBy(xpath = "//input[@data-test-id='create-board-title-input']/following-sibling::button[2]")
     private WebElement selectPrivacy; //select to select privacy
+
     @FindBy(css = "ul span[name='private']")
     private WebElement privatePrivacy;
+
     @FindBy(css = "ul span[name='organization']")
     private WebElement teamPrivacy;
+
     @FindBy(css = "ul span[name='public']")
     private WebElement publicPrivacy;
+
     @FindBy(css = "button._21upOlzpUQJcdT:nth-child(2)")
     private WebElement confirmPublicPrivacy;
-
 
     /**
      * Closes popup Atlassian.
      */
     public void closePopupAtlasian() {
-        WebElement popup = waitElement(popupAtlasian);
-        popup.click();
+        WebElementsHelper.clickElement(popupAtlasian);
     }
 
     /**
      * Sets name of board.
-     * @param nameBoard
+     * @param boardName
      */
-    private void setNameBoard(final String nameBoard) {
-        WebElementsHelper.sendKeys(inputBoardName, nameBoard);
+    private void setBoardName(final String boardName) {
+        WebElementsHelper.sendKeys(inputBoardName, boardName);
     }
 
     /**
@@ -58,7 +68,7 @@ public class CreateBoardPopup extends BasePage {
     /**
      * Clicks list team.
      */
-    private void clickSListTeam() {
+    private void clickListTeam() {
         WebElementsHelper.clickElement(listTeams); //first team
     }
 
@@ -71,7 +81,7 @@ public class CreateBoardPopup extends BasePage {
 
     private void selectTeam(final String team) {
         WebElementsHelper.clickElement(selectTeam);
-        this.clickSListTeam(); //select the first team
+        this.clickListTeam(); //select the first team
     }
 
     /**
@@ -87,13 +97,12 @@ public class CreateBoardPopup extends BasePage {
      * @param privacy
      */
     private void setPrivatePrivacy(final String privacy) {
-        if (!privacy.equals("team")) {
+        if (!privacy.equals(TEAM)) {
             WebElementsHelper.clickElement(selectPrivacy);
-            if (privacy.equals("private")) {
+            if (privacy.equals(PRIVATE)) {
                 WebElementsHelper.clickElement(privatePrivacy);
             } else {
                 WebElementsHelper.clickElement(publicPrivacy);
-                waitElement(confirmPublicPrivacy);
                 WebElementsHelper.clickElement(confirmPublicPrivacy);
             }
         }
@@ -106,7 +115,7 @@ public class CreateBoardPopup extends BasePage {
      */
     public HashMap<String, Runnable> composeStrategyMap(final Board board) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
-        strategyMap.put("name", () -> setNameBoard((board.getName())));
+        strategyMap.put("name", () -> setBoardName((board.getName())));
         strategyMap.put("team", () -> setTeam((board.getTeam())));
         strategyMap.put("privacy", () -> setPrivatePrivacy((board.getPrivacy())));
         return strategyMap;
@@ -116,7 +125,7 @@ public class CreateBoardPopup extends BasePage {
      * Fills board's fields.
      * @param board
      */
-    public void setUserInformationToUpdate(final Board board) {
+    public void setBoardInformation(final Board board) {
         HashMap<String, Runnable> strategyMap = composeStrategyMap(board);
         board.getFields().forEach(key -> strategyMap.get(key).run());
     }
@@ -127,8 +136,8 @@ public class CreateBoardPopup extends BasePage {
      * @return BoardPage
      */
     public BoardPage createBoard(final Board board) {
-        this.waitElement(inputBoardName);
-        setUserInformationToUpdate(board);
+        WebElementsHelper.waitElement(inputBoardName);
+        setBoardInformation(board);
         this.clickSubmit();
         return new BoardPage();
     }
@@ -139,10 +148,10 @@ public class CreateBoardPopup extends BasePage {
      * @return BoardPage
      */
     public BoardPage createBoard(final String nameBoard) {
-        this.waitElement(inputBoardName);
-        this.setNameBoard(nameBoard);
+        WebElementsHelper.waitElement(inputBoardName);
+        this.setBoardName(nameBoard);
         this.clickSelectTeam();
-        this.clickSListTeam();
+        this.clickListTeam();
         this.clickSubmit();
         return new BoardPage();
     }

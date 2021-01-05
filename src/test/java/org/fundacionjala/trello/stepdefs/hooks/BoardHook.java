@@ -1,10 +1,13 @@
 package org.fundacionjala.trello.stepdefs.hooks;
 
+import io.cucumber.java.Before;
+import io.restassured.response.Response;
 import org.fundacionjala.trello.core.client.RequestManager;
 import org.fundacionjala.trello.core.context.Context;
 import org.fundacionjala.trello.trello.config.EnvironmentApi;
 import org.fundacionjala.trello.trello.utils.Authentication;
 import io.cucumber.java.After;
+import org.json.JSONObject;
 
 public class BoardHook {
     public static final int POS_INI_ID = 21;
@@ -17,6 +20,19 @@ public class BoardHook {
      */
     public BoardHook(final Context sharedContext) {
         this.context = sharedContext;
+    }
+
+    /**
+     * Delete the board after execute Stepdefs with the deleteBoard tag.
+     */
+    @Before(value = "@CreateBoard", order = 0)
+    public void createBoard() {
+        RequestManager.setRequestSpec(Authentication.getLoggedReqSpec());
+        String endpoint = EnvironmentApi.getInstance().getBaseUrlApi().concat("/boards/");
+        JSONObject json = new JSONObject();
+        json.put("name", "TestBoard");
+        Response response = RequestManager.post(endpoint, json.toString());
+        context.saveDataCollection("board", response.jsonPath().getMap(""));
     }
 
     /**

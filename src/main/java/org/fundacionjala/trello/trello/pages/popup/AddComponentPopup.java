@@ -9,21 +9,24 @@ public class AddComponentPopup extends BasePage {
     @FindBy(css = "button[data-test-id='header-create-board-button']")
     private WebElement addBoardButton;
 
+    @FindBy(css = "button[data-test-id='header-create-team-button']")
+    private WebElement addTeamButton;
+
     /**
-     * Click addButton.
+     * Click addBoardButton.
      * @return CreateBoardPopup
      */
     public CreateBoardPopup clickAddBoardBtn() {
-        waitElement(addBoardButton);
         WebElementsHelper.clickElement(addBoardButton);
         return new CreateBoardPopup();
     }
 
     /**
-     * Get addButton.
-     * @return WebElement
+     * Click addTeamButton.
+     * @return CreateTeamPopup
      */
-    public WebElement getAddBoardButton() {
-        return addBoardButton;
+    public CreateTeamPopup clickAddTeamButton() {
+        WebElementsHelper.clickElement(addTeamButton);
+        return new CreateTeamPopup();
     }
 }

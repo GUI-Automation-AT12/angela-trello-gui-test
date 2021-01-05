@@ -8,14 +8,14 @@ import org.openqa.selenium.support.FindBy;
 
 public class TopMenu extends BasePage {
     @FindBy(css = "button[data-test-id='header-create-menu-button']")
-    private WebElement btnAdd;
+    private WebElement addBtn;
 
     /**
      * Clicks on add button.
      * @return CreateBoardPopup page
      */
     public AddComponentPopup clickAddButton() {
-        WebElementsHelper.clickElement(btnAdd);
+        WebElementsHelper.clickElement(addBtn);
         return new AddComponentPopup();
     }
 
@@ -24,6 +24,6 @@ public class TopMenu extends BasePage {
      * @return WebElement
      */
     public WebElement getAddButton() {
-        return btnAdd;
+        return addBtn;
     }
 }

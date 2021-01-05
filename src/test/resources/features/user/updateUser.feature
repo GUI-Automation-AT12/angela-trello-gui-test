@@ -4,7 +4,7 @@ Feature: Update user's profile
   @Functional @ResetUserInformation
   Scenario: Update user's information in Profile and Visibility section
     Given I log in to Trello with Editable user credentials
-    When I navigate to Profile section
+    When I navigate to Profile page
     And I edit my profile with the following information
       | username | newnameUNIQUE_ID  |
       | bio      | new bio UNIQUE_ID |

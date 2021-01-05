@@ -13,12 +13,16 @@ public class ProfilePage extends BasePage {
 
     @FindBy(name = "username")
     private WebElement username;
+
     @FindBy(css = "div[data-test-id='profile-tab-container'] textarea")
     private WebElement bio;
+
     @FindBy(css = "div[data-test-id='profile-tab-container'] button")
     private WebElement btnSave;
+
     @FindBy(id = "layer-manager-alert")
     private WebElement messageUpdated;
+
     @FindBy(css = "div.tabbed-pane-header span:nth-child(2)")
     private WebElement usernameInTopContent;
 
@@ -26,9 +30,9 @@ public class ProfilePage extends BasePage {
      * Gets success message of updated profile.
      * @return if the message is displayed or not
      */
-    public boolean getMessageOfUpdatedProfile() {
+    public boolean isUpdatedProfileMessageDisplayed() {
         //get message updated user
-        if (waitElement(messageUpdated).isDisplayed()) {
+        if (WebElementsHelper.waitElement(messageUpdated).isDisplayed()) {
             return true;
         }
         return false;
@@ -62,7 +66,7 @@ public class ProfilePage extends BasePage {
      * @return username
      */
     public String getUsername() {
-        return WebElementsHelper.getValueFromElement(username, "value");
+        return WebElementsHelper.getAttributeValueFromElement(username, "value");
     }
 
     /**
@@ -78,7 +82,7 @@ public class ProfilePage extends BasePage {
      * @param user
      * @return HashMap
      */
-    public HashMap<String, Runnable> composeStrategyMap(final User user) {
+    public HashMap<String, Runnable> composeStrategySetterMap(final User user) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
         strategyMap.put("username", () -> setUsername(user.getUsername()));
         strategyMap.put("bio", () -> setBio(user.getBio()));
@@ -90,12 +94,12 @@ public class ProfilePage extends BasePage {
      * @param user
      */
     public void setUserInformationToUpdate(final User user) {
-        HashMap<String, Runnable> strategyMap = composeStrategyMap(user);
+        HashMap<String, Runnable> strategyMap = composeStrategySetterMap(user);
         user.getUpdatedFields().forEach(key -> strategyMap.get(key).run());
     }
 
     /**
-     * This POM method will be exposed in test case to login in the application.
+     * Update user's profile.
      * @param user
      * @return
      */
@@ -132,7 +136,7 @@ public class ProfilePage extends BasePage {
      * @return username
      */
     public String getUsernameFromTopContent() {
-        waitElement(usernameInTopContent);
+        WebElementsHelper.waitElement(usernameInTopContent);
         return WebElementsHelper.getTextFromElement(usernameInTopContent);
     }
 }

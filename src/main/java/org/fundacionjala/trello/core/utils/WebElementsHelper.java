@@ -1,6 +1,9 @@
 package org.fundacionjala.trello.core.utils;
 
+import org.fundacionjala.trello.core.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public final class WebElementsHelper {
     /**
@@ -14,9 +17,8 @@ public final class WebElementsHelper {
      * @param value
      */
     public static void sendKeys(final WebElement webElement, final String value) {
-        //Actions act = new Actions(WebDriverManager.getInstance().getWebDriver());
+        waitElement(webElement);
         webElement.clear();
-        //act.moveToElement(webElement).sendKeys(value).perform();
         webElement.sendKeys(value);
     }
 
@@ -25,7 +27,17 @@ public final class WebElementsHelper {
      * @param webElement
      */
     public static void clickElement(final WebElement webElement) {
+        waitElement(webElement);
         webElement.click();
+    }
+
+    /**
+     * Waits for a web element.
+     * @param elem
+     * @return WebElement
+     */
+    public static WebElement waitElement(final WebElement elem) {
+        return WebDriverManager.getInstance().getWebDriverWait().until(ExpectedConditions.elementToBeClickable(elem));
     }
 
     /**
@@ -40,10 +52,28 @@ public final class WebElementsHelper {
     /**
      * Gets value from elements.
      * @param webElement
-     * @param attibute
+     * @param attribute
      * @return value from element
      */
-    public static String getValueFromElement(final WebElement webElement, final String attibute) {
-        return webElement.getAttribute(attibute);
+    public static String getAttributeValueFromElement(final WebElement webElement, final String attribute) {
+        return webElement.getAttribute(attribute);
+    }
+
+    /**
+     * Click by element.
+     * @param byElement
+     */
+    public static void clickElement(final By byElement) {
+        waitElement(byElement);
+        WebDriverManager.getInstance().getWebDriver().findElement(byElement).click();
+    }
+
+    /**
+     * Wait for by element.
+     * @param byElem
+     * @return WebElement
+     */
+    public static WebElement waitElement(final By byElem) {
+        return WebDriverManager.getInstance().getWebDriverWait().until(ExpectedConditions.elementToBeClickable(byElem));
     }
 }

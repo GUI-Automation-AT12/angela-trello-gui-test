@@ -1,7 +1,7 @@
 package org.fundacionjala.trello.core;
 
+import org.fundacionjala.trello.core.config.Environment;
 import org.fundacionjala.trello.core.webdrivers.DriverFactory;
-import org.fundacionjala.trello.trello.config.Environment;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.concurrent.TimeUnit;
@@ -54,7 +54,7 @@ public final class WebDriverManager {
     /**
      * Quite.
      */
-    public void quite() {
+    public void quit() {
         webDriverManager = null;
         webDriver.quit();
     }

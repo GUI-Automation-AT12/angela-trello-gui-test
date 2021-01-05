@@ -10,6 +10,8 @@ import java.util.function.Supplier;
 public class User {
     private String username;
     private String bio;
+    private String email;
+    private String password;
     private Set<String> updatedFields = new HashSet<>();
 
     /**
@@ -94,5 +96,37 @@ public class User {
         HashMap<String, Supplier<String>> strategyMap = composeStrategyGetterMap();
         updatedFields.forEach(key -> userProfileUpdated.put(key, strategyMap.get(key).get()));
         return userProfileUpdated;
+    }
+
+    /**
+     * Set email.
+     * @param newEmail
+     */
+    public void setEmail(final String newEmail) {
+        email = newEmail;
+    }
+
+    /**
+     * Get email.
+     * @return email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Set password.
+     * @param newPassword
+     */
+    public void setPassword(final String newPassword) {
+        password = newPassword;
+    }
+
+    /**
+     * get password.
+     * @return password
+     */
+    public String getPassword() {
+        return password;
     }
 }

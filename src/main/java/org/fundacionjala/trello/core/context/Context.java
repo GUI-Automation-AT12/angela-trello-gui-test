@@ -1,6 +1,5 @@
 package org.fundacionjala.trello.core.context;
 
-import org.fundacionjala.trello.trello.pages.BasePage;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +9,6 @@ import java.util.Map;
 public class Context {
     private Map<String, String> data;
     private Map<String, Map<String, String>> dataCollection;
-    private Map<String, BasePage> pages;
 
     /**
      * Constructor for the Context.
@@ -18,7 +16,6 @@ public class Context {
     public Context() {
         data = new HashMap<>();
         dataCollection = new HashMap<String, Map<String, String>>();
-        pages = new HashMap<String, BasePage>();
     }
 
     /**
@@ -63,23 +60,5 @@ public class Context {
      */
     public String getValueData(final String key) {
         return data.getOrDefault(key, "");
-    }
-
-    /**
-     * Save pages.
-     * @param key
-     * @param page
-     */
-    public void savePage(final String key, final BasePage page) {
-        pages.put(key, page);
-    }
-
-    /**
-     * Get a page.
-     * @param page
-     * @return page
-     */
-    public BasePage getPage(final String page) {
-        return pages.get(page);
     }
 }

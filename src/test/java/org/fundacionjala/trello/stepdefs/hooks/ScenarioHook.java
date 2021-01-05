@@ -24,6 +24,6 @@ public class ScenarioHook {
                 e.printStackTrace();
             }
         }
-        WebDriverManager.getInstance().quite();
+        WebDriverManager.getInstance().quit();
     }
 }

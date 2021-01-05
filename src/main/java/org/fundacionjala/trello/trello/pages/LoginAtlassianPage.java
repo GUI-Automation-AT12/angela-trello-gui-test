@@ -7,10 +7,13 @@ import org.openqa.selenium.support.FindBy;
 public class LoginAtlassianPage extends BasePage {
     @FindBy(css = "div.email-password input[name='user']")
     private WebElement user;
+
     @FindBy(id = "password")
     private WebElement password;
+
     @FindBy(id = "login")
     private WebElement btnLogin;
+
     @FindBy(id = "login-submit")
     private WebElement btnLoginAtlassian;
 
@@ -53,11 +56,11 @@ public class LoginAtlassianPage extends BasePage {
     public HomePage login(final String strUser, final String strPassword) {
         this.setUserName(strUser);
         this.clickLogin();
-        this.waitElement(btnLoginAtlassian);
+        WebElementsHelper.waitElement(btnLoginAtlassian);
         this.setPassword(strPassword);
         this.clickLoginAtlassian();
         HomePage homePage = new HomePage();
-        waitElement(homePage.getTopMenu().getAddButton());
-        return homePage;
+        WebElementsHelper.waitElement(homePage.getTopMenu().getAddButton());
+        return new HomePage();
     }
 }

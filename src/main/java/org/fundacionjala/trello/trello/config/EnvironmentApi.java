@@ -1,31 +1,15 @@
 package org.fundacionjala.trello.trello.config;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import org.fundacionjala.trello.core.utils.PropertyReader;
 import java.util.Properties;
 
 public final class EnvironmentApi {
-    private static final Logger LOGGER = LogManager.getLogger(Environment.class);
     private static final String PATH = "settingsApi.properties";
     private static EnvironmentApi singleInstance;
     private Properties property;
-    private FileReader reader;
 
     private EnvironmentApi() {
-        try {
-            reader = new FileReader(PATH);
-            property = new Properties();
-            property.load(reader);
-        } catch (FileNotFoundException e) {
-            LOGGER.error(e.getMessage());
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage());
-        } finally {
-            closeReader();
-        }
+        property = PropertyReader.readProperty(PATH);
     }
 
     /**
@@ -70,13 +54,5 @@ public final class EnvironmentApi {
      */
     public String getEnvApiKey() {
         return getEnvProperty("key");
-    }
-
-    private void closeReader() {
-        try {
-            reader.close();
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage());
-        }
     }
 }

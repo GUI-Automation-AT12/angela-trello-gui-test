@@ -1,6 +1,7 @@
 package org.fundacionjala.trello.core.utils.user;
 
 import org.fundacionjala.trello.core.utils.JsonReader;
+import org.fundacionjala.trello.trello.entities.User;
 import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.HashMap;
@@ -8,12 +9,18 @@ import java.util.Map;
 
 public final class UserReader {
     public static final String USER_FILE_PATH = "config/user.json";
+    public static final String EDITABLE_USER_PATH = "config/editableUser.json";
 
     /**
      * Constructor.
      */
     private UserReader() { }
 
+    private static Map<String, String> getUserMap(final String typeUser) throws IOException, ParseException {
+        HashMap<String, Object> map = JsonReader.readJsonFile(USER_FILE_PATH);
+        HashMap<String, String> userMap = (HashMap<String, String>) map.get(typeUser);
+        return userMap;
+    }
     /**
      * Gets username.
      * @param typeUser
@@ -22,9 +29,7 @@ public final class UserReader {
      * @throws ParseException
      */
     public static String getUsername(final String typeUser) throws IOException, ParseException {
-        HashMap<String, Object> map = JsonReader.readJsonFile(USER_FILE_PATH);
-        HashMap<String, String> userMap = (HashMap<String, String>) map.get(typeUser);
-        return userMap.get("username");
+        return getUserMap(typeUser).get("username");
     }
 
     /**
@@ -35,9 +40,7 @@ public final class UserReader {
      * @throws ParseException
      */
     public static String getEmail(final String typeUser) throws IOException, ParseException {
-        HashMap<String, Object> map = JsonReader.readJsonFile(UserReader.USER_FILE_PATH);
-        HashMap<String, String> userMap = (HashMap<String, String>) map.get(typeUser);
-        return userMap.get("email");
+        return getUserMap(typeUser).get("email");
     }
 
     /**
@@ -48,9 +51,7 @@ public final class UserReader {
      * @throws ParseException
      */
     public static String getPassword(final String typeUser) throws IOException, ParseException {
-        HashMap<String, Object> map = JsonReader.readJsonFile(USER_FILE_PATH);
-        HashMap<String, String> userMap = (HashMap<String, String>) map.get(typeUser);
-        return userMap.get("password");
+        return getUserMap(typeUser).get("password");
     }
 
     /**
@@ -61,9 +62,7 @@ public final class UserReader {
      * @throws ParseException
      */
     public static String getBio(final String typeUser) throws IOException, ParseException {
-        HashMap<String, Object> map = JsonReader.readJsonFile(USER_FILE_PATH);
-        HashMap<String, String> userMap = (HashMap<String, String>) map.get(typeUser);
-        return userMap.get("bio");
+        return getUserMap(typeUser).get("bio");
     }
 
     /**
@@ -76,5 +75,14 @@ public final class UserReader {
         Map<String, Object> users = new HashMap<>();
         users = JsonReader.readJsonFile(USER_FILE_PATH);
         return users;
+    }
+
+    /**
+     * Get User from json file.
+     * @return a new User
+     */
+    public static User getEditableUser() {
+        User user = JsonReader.getEntityFromJSON(User.class, EDITABLE_USER_PATH);
+        return user;
     }
 }
