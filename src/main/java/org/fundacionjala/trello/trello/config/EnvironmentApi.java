@@ -4,7 +4,7 @@ import org.fundacionjala.trello.core.utils.PropertyReader;
 import java.util.Properties;
 
 public final class EnvironmentApi {
-    private static final String PATH = "settingsApi.properties";
+    private static final String PATH = "trelloApi.properties";
     private static EnvironmentApi singleInstance;
     private Properties property;
 

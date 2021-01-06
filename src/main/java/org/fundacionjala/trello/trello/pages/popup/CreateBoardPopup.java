@@ -4,6 +4,7 @@ import org.fundacionjala.trello.core.utils.WebElementsHelper;
 import org.fundacionjala.trello.trello.entities.Board;
 import org.fundacionjala.trello.trello.pages.BasePage;
 import org.fundacionjala.trello.trello.pages.BoardPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -20,13 +21,10 @@ public class CreateBoardPopup extends BasePage {
     private WebElement inputBoardName; //wait
 
     @FindBy(xpath = "//input[@data-test-id='create-board-title-input']/following-sibling::button[1]")
-    private WebElement selectTeam; //team
-
-    @FindBy(css = "section.js-react-root li:first-child")
-    private WebElement listTeams; //listTeams
+    private WebElement dropdownSelectTeam; //team
 
     @FindBy(css = "button[data-test-id='create-board-submit-button']")
-    private WebElement submit; //listTeams
+    private WebElement submit;
 
     @FindBy(xpath = "//input[@data-test-id='create-board-title-input']/following-sibling::button[2]")
     private WebElement selectPrivacy; //select to select privacy
@@ -42,6 +40,8 @@ public class CreateBoardPopup extends BasePage {
 
     @FindBy(css = "button._21upOlzpUQJcdT:nth-child(2)")
     private WebElement confirmPublicPrivacy;
+
+    private String team = "//button//span[contains(text(),'%s')]";
 
     /**
      * Closes popup Atlassian.
@@ -59,42 +59,29 @@ public class CreateBoardPopup extends BasePage {
     }
 
     /**
-     * Clicks select team.
-     */
-    private void clickSelectTeam() {
-        WebElementsHelper.clickElement(selectTeam);
-    }
-
-    /**
-     * Clicks list team.
-     */
-    private void clickListTeam() {
-        WebElementsHelper.clickElement(listTeams); //first team
-    }
-
-    /**
      * Clisk submit button.
      */
     private void clickSubmit() {
         WebElementsHelper.clickElement(submit);
     }
 
-    private void selectTeam(final String team) {
-        WebElementsHelper.clickElement(selectTeam);
-        this.clickListTeam(); //select the first team
+    private void selectTeam(final String teamName) {
+        WebElementsHelper.clickElement(dropdownSelectTeam);
+        By dropDownOption = By.xpath(String.format(team, teamName));
+        WebElementsHelper.clickElement(dropDownOption);
     }
 
     /**
      * Set a team to board.
-     * @param team
+     * @param teamToSelect for the board
      */
-    private void setTeam(final String team) {
-        selectTeam(team);
+    private void setTeam(final String teamToSelect) {
+        selectTeam(teamToSelect);
     }
 
     /**
      * Set the privacy of board.
-     * @param privacy
+     * @param privacy od the board
      */
     private void setPrivatePrivacy(final String privacy) {
         if (!privacy.equals(TEAM)) {
@@ -138,20 +125,6 @@ public class CreateBoardPopup extends BasePage {
     public BoardPage createBoard(final Board board) {
         WebElementsHelper.waitElement(inputBoardName);
         setBoardInformation(board);
-        this.clickSubmit();
-        return new BoardPage();
-    }
-
-    /**
-     * This POM method will be exposed in test case to login in the application.
-     * @param nameBoard
-     * @return BoardPage
-     */
-    public BoardPage createBoard(final String nameBoard) {
-        WebElementsHelper.waitElement(inputBoardName);
-        this.setBoardName(nameBoard);
-        this.clickSelectTeam();
-        this.clickListTeam();
         this.clickSubmit();
         return new BoardPage();
     }

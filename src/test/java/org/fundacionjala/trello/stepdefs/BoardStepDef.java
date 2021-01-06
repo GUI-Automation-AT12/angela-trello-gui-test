@@ -3,16 +3,17 @@ package org.fundacionjala.trello.stepdefs;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.fundacionjala.trello.core.WebDriverManager;
+import org.fundacionjala.trello.core.selenium.WebDriverManager;
 import org.fundacionjala.trello.core.context.Context;
 import org.fundacionjala.trello.trello.entities.Board;
 import org.fundacionjala.trello.trello.pages.BoardPage;
 import org.fundacionjala.trello.trello.pages.DeletedBoardPage;
 import org.fundacionjala.trello.trello.pages.TransporterPage;
+import org.fundacionjala.trello.trello.pages.menu.BoardMenu;
 import org.fundacionjala.trello.trello.pages.popup.AddComponentPopup;
 import org.fundacionjala.trello.trello.pages.popup.BoardMenuPopup;
 import org.fundacionjala.trello.trello.pages.popup.CreateBoardPopup;
-import org.fundacionjala.trello.trello.pages.topmenu.TopMenu;
+import org.fundacionjala.trello.trello.pages.menu.TopMenu;
 import org.testng.Assert;
 
 import java.net.MalformedURLException;
@@ -53,7 +54,7 @@ public class BoardStepDef {
     /**
      * Verify new board is created.
      */
-    @Then("the board name should be displayed")
+    @Then("the board name should be displayed on board page")
     public void verifyBoardNameIsDisplayed() {
         String actualName = boardPage.getBoardName();
         String expectedName = board.getName();
@@ -87,5 +88,16 @@ public class BoardStepDef {
         String actualMessage = deletedBoardPage.getBoardNotFoundMessage();
         String expectedMessage = context.getDataCollection("board").get("name").concat(" is closed.");
         Assert.assertEquals(actualMessage, expectedMessage);
+    }
+
+    /**
+     * Verify if the board's name is displayed on the board menu.
+     */
+    @And("the board name should be displayed on board menu")
+    public void verifyBoardNameIsDisplayedOnBoardMenu() {
+        BoardMenu boardMenu = topMenu.clickBoardButton();
+        String actualBoardName = boardMenu.getBoardName(board.getName());
+        String expectedBoardName = board.getName();
+        Assert.assertEquals(actualBoardName, expectedBoardName);
     }
 }

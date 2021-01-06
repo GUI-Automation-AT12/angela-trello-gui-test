@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
 
-public class User {
+public class User extends TrelloEntity {
     private String username;
     private String bio;
     private String email;

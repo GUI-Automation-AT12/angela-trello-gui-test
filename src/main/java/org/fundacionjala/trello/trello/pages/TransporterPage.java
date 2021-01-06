@@ -1,36 +1,28 @@
 package org.fundacionjala.trello.trello.pages;
 
-import org.fundacionjala.trello.core.WebDriverManager;
-import org.fundacionjala.trello.core.utils.user.UserReader;
+import org.fundacionjala.trello.core.selenium.WebDriverManager;
 import org.fundacionjala.trello.trello.config.EnvironmentTrello;
-import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
 public final class TransporterPage {
-    public static final HashMap<String, String> PAGE_URL = new HashMap<>();
-    static {
-        //User
-        String username = null;
-        try {
-            username = UserReader.getUsername("Editable");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        PAGE_URL.put("Profile", username + "/profile");
-        PAGE_URL.put("Board", username + "/boards");
-        PAGE_URL.put("Settings", "settings");
-    }
+    private static final HashMap<String, String> PAGE_URL = new HashMap<>();
+    private static String username;
 
     /**
      * Constructor.
      */
-    private TransporterPage() {
+    private TransporterPage() { }
+
+    /**
+     * Set username.
+     * @param newUsername
+     */
+    public static void setUsername(final String newUsername) {
+        username = newUsername;
+        PAGE_URL.put("Profile", username + "/profile");
+        PAGE_URL.put("Home", username + "/boards");
     }
 
     /**
@@ -39,7 +31,7 @@ public final class TransporterPage {
      * @throws MalformedURLException
      */
     private static void navigateToUrl(final String url) throws MalformedURLException {
-        WebDriverManager.getInstance().getWebDriver().navigate().to(new URL(url));
+       WebDriverManager.getInstance().getWebDriver().navigate().to(new URL(url));
     }
 
     /**

@@ -2,7 +2,7 @@ package org.fundacionjala.trello.stepdefs.hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
-import org.fundacionjala.trello.core.WebDriverManager;
+import org.fundacionjala.trello.core.selenium.WebDriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 

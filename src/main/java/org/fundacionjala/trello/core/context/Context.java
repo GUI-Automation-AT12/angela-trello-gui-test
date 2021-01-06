@@ -1,5 +1,6 @@
 package org.fundacionjala.trello.core.context;
 
+import org.fundacionjala.trello.trello.entities.TrelloEntity;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import java.util.Map;
 public class Context {
     private Map<String, String> data;
     private Map<String, Map<String, String>> dataCollection;
+    private Map<String, TrelloEntity> entities;
 
     /**
      * Constructor for the Context.
@@ -16,6 +18,7 @@ public class Context {
     public Context() {
         data = new HashMap<>();
         dataCollection = new HashMap<String, Map<String, String>>();
+        entities = new HashMap<String, TrelloEntity>();
     }
 
     /**
@@ -25,6 +28,24 @@ public class Context {
      */
     public Map<String, String> getDataCollection(final String key) {
         return dataCollection.getOrDefault(key, new HashMap<String, String>());
+    }
+
+    /**
+     * Save a entity.
+     * @param key of entity
+     * @param trelloEntity the entity to save
+     */
+    public void  saveEntity(final String key, final TrelloEntity trelloEntity) {
+        entities.put(key, trelloEntity);
+    }
+
+    /**
+     * Get a entity.
+     * @param key of entity
+     * @return the entity with the key
+     */
+    public TrelloEntity getEntity(final String key) {
+        return entities.get(key);
     }
 
     /**

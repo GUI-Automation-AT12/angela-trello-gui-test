@@ -10,7 +10,7 @@ public class Team {
     private String name;
     private String type;
     private String description;
-    private List<User> members;
+    private List<String> members;
     private Set<String> updatedFields;
 
     /**
@@ -88,7 +88,7 @@ public class Team {
      * Get members.
      * @return list of members
      */
-    public List<User> getMembers() {
+    public List<String> getMembers() {
         return members;
     }
 
@@ -96,7 +96,7 @@ public class Team {
      * Set members.
      * @param listMembers
      */
-    public void setMembers(final List<User> listMembers) {
+    public void setMembers(final List<String> listMembers) {
         this.members = listMembers;
     }
 

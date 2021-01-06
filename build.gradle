@@ -96,8 +96,6 @@ task executeBDDTests(type: Test) {
         jvmArgs = ['-Dcucumber.plugin=rerun:build/target/rerun.txt']
         jvmArgs = ['-DcucumberThreadCount=' + cucumberThreadCount]
         jvmArgs = ['-DfilterTags=' + filterTags]
-        jvmArgs = ['-Demail=' + email]
-        jvmArgs = ['-Dpassword=' + password]
     }
     testLogging.showStandardStreams = true
     scanForTestClasses = false

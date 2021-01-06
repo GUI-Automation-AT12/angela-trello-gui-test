@@ -2,7 +2,6 @@ package org.fundacionjala.trello.stepdefs;
 
 import org.fundacionjala.trello.core.context.Context;
 import org.fundacionjala.trello.core.utils.user.UserReader;
-import org.fundacionjala.trello.trello.config.EnvironmentTrello;
 import org.fundacionjala.trello.trello.pages.HomePage;
 import org.fundacionjala.trello.trello.pages.InitialPage;
 import org.fundacionjala.trello.trello.pages.LoginAtlassianPage;
@@ -51,20 +50,8 @@ public class LoginAtlassianSteps {
         TransporterPage.navigateToPage();
         InitialPage initialPage = new InitialPage();
         loginAtlassianPage = initialPage.clickInitSessionAtlassian();
-        //User userJson = UserReader.getEditableUser();
         homePage = loginAtlassianPage.login(UserReader.getEmail(typeUser), UserReader.getPassword(typeUser));
-        //homePage = loginAtlassianPage.login(userJson.getEmail(), userJson.getPassword());
-        //context.saveData("typeUser", typeUser);
-        context.saveData("typeUser", typeUser);
-    }
-
-    /**
-     * Set use and password.
-     */
-    @When("I set user and password")
-    public void setUserAndPassword() {
-        homePage = loginAtlassianPage.login(EnvironmentTrello.getInstance().getEmail(),
-                EnvironmentTrello.getInstance().getPassword());
+        context.saveEntity("user", UserReader.getUser(typeUser));
     }
 
     /**

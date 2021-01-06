@@ -7,7 +7,7 @@ import org.fundacionjala.trello.core.utils.PropertyReader;
  * PropertiesReader class.
  */
 public final class EnvironmentTrello {
-    private static final String PATH = "gradle.properties";
+    private static final String PATH = "trello.properties";
     private static EnvironmentTrello singleInstance;
     private Properties property;
 

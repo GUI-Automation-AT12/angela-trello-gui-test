@@ -1,6 +1,6 @@
 package org.fundacionjala.trello.core.utils;
 
-import org.fundacionjala.trello.core.WebDriverManager;
+import org.fundacionjala.trello.core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,8 +13,8 @@ public final class WebElementsHelper {
 
     /**
      * Sends keys.
-     * @param webElement
-     * @param value
+     * @param webElement to send keys
+     * @param value to set in webElement
      */
     public static void sendKeys(final WebElement webElement, final String value) {
         waitElement(webElement);
@@ -24,7 +24,7 @@ public final class WebElementsHelper {
 
     /**
      * Clicks on elements.
-     * @param webElement
+     * @param webElement to click
      */
     public static void clickElement(final WebElement webElement) {
         waitElement(webElement);
@@ -33,7 +33,7 @@ public final class WebElementsHelper {
 
     /**
      * Waits for a web element.
-     * @param elem
+     * @param elem is the element for which it is waiting
      * @return WebElement
      */
     public static WebElement waitElement(final WebElement elem) {
@@ -47,6 +47,15 @@ public final class WebElementsHelper {
      */
     public static String getTextFromElement(final WebElement webElement) {
         return webElement.getText();
+    }
+
+    /**
+     * Gets text from by element.
+     * @param by
+     * @return String with the text
+     */
+    public static String getTextFromBy(final By by) {
+        return WebDriverManager.getInstance().getWebDriver().findElement(by).getText();
     }
 
     /**

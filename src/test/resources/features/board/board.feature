@@ -6,21 +6,23 @@ Feature: Create a board
 
   @Functional @CreateOrganization @DeleteOrganization @DeleteBoard
   Scenario: Create a private board
-    When I navigate to Board page
+    When I navigate to Home page
     And I create a board with the following form data
-      | name    | boardName |
-      | team    | testTeam  |
-      | privacy | private   |
-    Then the board name should be displayed
+      | name    | boardName    |
+      | team    | teamTestName |
+      | privacy | private      |
+    Then the board name should be displayed on board page
+    And the board name should be displayed on board menu
 
   @Functional @CreateOrganization @DeleteOrganization @DeleteBoard
   Scenario: Create a public board
-    When I navigate to Board page
+    When I navigate to Home page
     And I create a board with the following form data
-      | name    | boardName |
-      | team    | testTeam  |
-      | privacy | public    |
-    Then the board name should be displayed
+      | name    | boardName    |
+      | team    | teamTestName |
+      | privacy | public       |
+    Then the board name should be displayed on board page
+    And the board name should be displayed on board menu
 
   @Functional @CreateBoard
   Scenario: Delete a board

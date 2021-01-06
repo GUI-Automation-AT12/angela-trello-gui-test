@@ -1,6 +1,5 @@
 package org.fundacionjala.trello.stepdefs;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.fundacionjala.trello.core.context.Context;
@@ -8,8 +7,10 @@ import org.fundacionjala.trello.trello.entities.User;
 import org.fundacionjala.trello.trello.pages.HomePage;
 import org.fundacionjala.trello.trello.pages.LoginAtlassianPage;
 import org.fundacionjala.trello.trello.pages.ProfilePage;
+import org.fundacionjala.trello.trello.pages.TransporterPage;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,7 +52,7 @@ public class UpdateProfileStep {
     /**
      * Verify user's information after update.
      */
-    @And("My profile information should be updated in Profile and Visibility section")
+    @Then("my profile information should be updated in Profile and Visibility section")
     public void verifyMmyProfileInformationIsUpdatedInProfileAndVisibilitySection() {
         SoftAssert softAssert = new SoftAssert();
         Map<String, String> actualProfileInfo = profilePage.getUserInformationAsMap(user.getUpdatedFields());
@@ -64,12 +65,22 @@ public class UpdateProfileStep {
     }
 
     /**
+     * Reload the page.
+     * @throws MalformedURLException
+     */
+    @When("I reload the page")
+    public void reloadThePage() throws MalformedURLException {
+        TransporterPage.setUsername(user.getUsername());
+        TransporterPage.navigateToPage("Profile");
+    }
+
+    /**
      * Verify username into top content.
      */
-    @And("My username should be updated into Top Content")
+    @Then("my username should be updated into Top Content")
     public void verifyUsernameIsUpdatedIntoTopContent() {
         String actualUsername = profilePage.getUsernameFromTopContent();
-        String expectedUsername = user.getUsername();
+        String expectedUsername = "@".concat(user.getUsername());
         Assert.assertEquals(actualUsername, expectedUsername);
     }
 }

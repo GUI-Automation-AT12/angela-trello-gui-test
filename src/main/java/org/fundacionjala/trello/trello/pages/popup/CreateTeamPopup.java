@@ -22,9 +22,11 @@ public class CreateTeamPopup extends BasePage {
     @FindBy(css = "button[data-test-id='header-create-team-submit-button']")
     private WebElement submitBtn;
 
+    private String typeTeam = "//*[contains(text(),'%s')]";
+
     private void selectType(final String newType) {
         WebElementsHelper.clickElement(dropdownSelectType);
-        By dropDownOption = By.xpath("//*[contains(text(),'" + newType + "')]");
+        By dropDownOption = By.xpath(String.format(typeTeam, newType));
         WebElementsHelper.clickElement(dropDownOption);
     }
 

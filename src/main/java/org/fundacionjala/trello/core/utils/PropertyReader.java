@@ -3,7 +3,6 @@ package org.fundacionjala.trello.core.utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fundacionjala.trello.trello.config.EnvironmentTrello;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -25,10 +24,9 @@ public final class PropertyReader {
             reader = new FileReader(path);
             properties = new Properties();
             properties.load(reader);
-        } catch (FileNotFoundException e) {
-            LOGGER.error(e.getMessage());
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
+            System.exit(1);
         } finally {
             closeReader();
         }

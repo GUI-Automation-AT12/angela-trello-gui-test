@@ -9,5 +9,6 @@ Feature: Update user's profile
       | username | newnameUNIQUE_ID  |
       | bio      | new bio UNIQUE_ID |
     Then "Saved" message should be displayed in Profile and Visibility section
-    And My profile information should be updated in Profile and Visibility section
-    #And My username should be updated into Top Content
+    And my profile information should be updated in Profile and Visibility section
+    When I reload the page
+    Then my username should be updated into Top Content

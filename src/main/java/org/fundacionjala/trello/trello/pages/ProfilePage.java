@@ -136,7 +136,6 @@ public class ProfilePage extends BasePage {
      * @return username
      */
     public String getUsernameFromTopContent() {
-        WebElementsHelper.waitElement(usernameInTopContent);
         return WebElementsHelper.getTextFromElement(usernameInTopContent);
     }
 }

@@ -10,6 +10,10 @@ import java.util.Map;
 public final class UserReader {
     public static final String USER_FILE_PATH = "config/user.json";
     public static final String EDITABLE_USER_PATH = "config/editableUser.json";
+    private static final Map<String, String> TYPE_USERS = new HashMap<>();
+    static {
+        TYPE_USERS.put("Editable", "config/editableUser.json");
+    }
 
     /**
      * Constructor.
@@ -79,10 +83,11 @@ public final class UserReader {
 
     /**
      * Get User from json file.
-     * @return a new User
+     * @param typeUser to read
+     * @return a User
      */
-    public static User getEditableUser() {
-        User user = JsonReader.getEntityFromJSON(User.class, EDITABLE_USER_PATH);
+    public static User getUser(final String typeUser) {
+        User user = JsonReader.getEntityFromJSON(User.class, TYPE_USERS.get(typeUser));
         return user;
     }
 }
