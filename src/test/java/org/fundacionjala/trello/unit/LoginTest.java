@@ -2,9 +2,9 @@ package org.fundacionjala.trello.unit;
 
 import org.fundacionjala.trello.trello.utils.user.UserReader;
 import org.fundacionjala.trello.core.selenium.WebDriverManager;
-import org.fundacionjala.trello.trello.pages.InitialPage;
-import org.fundacionjala.trello.trello.pages.LoginAtlassianPage;
-import org.fundacionjala.trello.trello.pages.TransporterPage;
+import org.fundacionjala.trello.trello.ui.pages.InitialPage;
+import org.fundacionjala.trello.trello.ui.pages.LoginAtlassianPage;
+import org.fundacionjala.trello.trello.ui.pages.TransporterPage;
 import org.json.simple.parser.ParseException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;

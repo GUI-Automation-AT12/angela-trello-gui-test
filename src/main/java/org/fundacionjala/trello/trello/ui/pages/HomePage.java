@@ -1,6 +1,6 @@
-package org.fundacionjala.trello.trello.pages;
+package org.fundacionjala.trello.trello.ui.pages;
 
-import org.fundacionjala.trello.trello.pages.menu.TopMenu;
+import org.fundacionjala.trello.trello.ui.menu.TopMenu;
 
 public class HomePage extends BasePage {
 

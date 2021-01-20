@@ -12,7 +12,8 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         glue = {"org.fundacionjala.trello.stepdefs"},
         features = {"src/test/resources/features"},
-        plugin = {"pretty", "json:build/targetJson/cucumber-report/cucumber.json", "html:build/targetJson/test-output.html/"}
+        plugin = {"pretty", "json:build/targetJson/cucumber-report/cucumber.json",
+                "html:build/targetJson/test-output.html/"}
 )
 
 public final class Runner extends AbstractTestNGCucumberTests {

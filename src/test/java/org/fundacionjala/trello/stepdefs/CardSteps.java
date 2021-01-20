@@ -2,18 +2,10 @@ package org.fundacionjala.trello.stepdefs;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import org.checkerframework.checker.units.qual.C;
 import org.fundacionjala.trello.core.context.Context;
 import org.fundacionjala.trello.trello.entities.Card;
-import org.fundacionjala.trello.trello.entities.Team;
-import org.fundacionjala.trello.trello.pages.BoardPage;
-import org.fundacionjala.trello.trello.pages.TeamPage;
-import org.fundacionjala.trello.trello.pages.menu.TopMenu;
-import org.fundacionjala.trello.trello.pages.popup.AddComponentPopup;
-import org.fundacionjala.trello.trello.pages.popup.CreateTeamPopup;
-import org.fundacionjala.trello.trello.pages.popup.MembersPopup;
+import org.fundacionjala.trello.trello.ui.pages.BoardPage;
 import org.junit.Assert;
-
 import java.util.Map;
 
 public class CardSteps {
@@ -44,6 +36,7 @@ public class CardSteps {
 
     /**
      * Verify card is displayed on target list.
+     * @param target list
      */
     @Then("the card should be displayed on {word} list")
     public void verifyCardIsDisplayedOnList(final String target) {
@@ -59,12 +52,19 @@ public class CardSteps {
         Assert.assertFalse(boardPage.isCardOnList(originList, cardName));
     }
 
+    /**
+     * Create a new card with a specific information.
+     * @param cardInformation
+     */
     @And("I create a card with the following form data")
     public void createACardWithTheFollowingFormData(final Map<String, String> cardInformation) {
         card.processInformation(cardInformation);
         boardPage.createCard(card, context.getDataCollection("list").get("name"));
     }
 
+    /**
+     * Verify if the card created is on a list.
+     */
     @Then("the card should be created on list")
     public void theCardShouldBeCreatedOnList() {
         String list = context.getDataCollection("list").get("name");

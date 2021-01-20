@@ -1,4 +1,4 @@
-package org.fundacionjala.trello.trello.pages;
+package org.fundacionjala.trello.trello.ui.pages;
 
 import org.fundacionjala.trello.core.selenium.WebDriverManager;
 import org.fundacionjala.trello.core.selenium.WebElementsHelper;
@@ -24,7 +24,8 @@ public class BoardPage extends BasePage {
     private String listLocator = "//textarea[contains(text(),'%s')]";
     private String cardLocator = "//span[contains(text(),'%s')]";
     private String cardOnListLocator = "%s//parent::div//parent::div%s";
-    private String addCardBtnLocator = "//textarea[contains(text(),'%s')]//parent::div//parent::div//span[@class='js-add-a-card']";
+    private String addCardBtnLocator =
+            "//textarea[contains(text(),'%s')]//parent::div//parent::div//span[@class='js-add-a-card']";
 
     /**
      * Gets name of board.
@@ -50,11 +51,12 @@ public class BoardPage extends BasePage {
      * Verify if the card is on list.
      * @param list
      * @param cardName
-     * @return
+     * @return a boolean
      */
     public boolean isCardOnList(final String list, final String cardName) {
         WebDriver webDriver = WebDriverManager.getInstance().getWebDriver();
-        if (webDriver.findElements(By.xpath(String.format(cardOnListLocator,String.format(listLocator, list), String.format(cardLocator, cardName)))).size() != 0) {
+        if (webDriver.findElements(By.xpath(String.format(cardOnListLocator, String.format(listLocator, list),
+                String.format(cardLocator, cardName)))).size() != 0) {
             return true;
         }
         return false;
@@ -68,6 +70,7 @@ public class BoardPage extends BasePage {
     /**
      * Create a card.
      * @param card
+     * @param list
      */
     public void createCard(final Card card, final String list) {
         clickAddCardBtn(list);

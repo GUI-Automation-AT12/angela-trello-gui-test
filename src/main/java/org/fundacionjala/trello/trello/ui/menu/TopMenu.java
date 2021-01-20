@@ -1,8 +1,8 @@
-package org.fundacionjala.trello.trello.pages.menu;
+package org.fundacionjala.trello.trello.ui.menu;
 
 import org.fundacionjala.trello.core.selenium.WebElementsHelper;
-import org.fundacionjala.trello.trello.pages.BasePage;
-import org.fundacionjala.trello.trello.pages.popup.AddComponentPopup;
+import org.fundacionjala.trello.trello.ui.pages.BasePage;
+import org.fundacionjala.trello.trello.ui.popup.AddComponentPopup;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

@@ -3,7 +3,7 @@ package org.fundacionjala.trello.hooks;
 import io.cucumber.java.After;
 import org.fundacionjala.trello.core.context.Context;
 import org.fundacionjala.trello.trello.entities.User;
-import org.fundacionjala.trello.trello.pages.ProfilePage;
+import org.fundacionjala.trello.trello.ui.pages.ProfilePage;
 import java.util.HashMap;
 import java.util.Map;
 

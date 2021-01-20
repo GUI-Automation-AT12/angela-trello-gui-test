@@ -2,13 +2,13 @@ package org.fundacionjala.trello.stepdefs;
 
 import org.fundacionjala.trello.core.context.Context;
 import org.fundacionjala.trello.trello.utils.user.UserReader;
-import org.fundacionjala.trello.trello.pages.HomePage;
-import org.fundacionjala.trello.trello.pages.InitialPage;
-import org.fundacionjala.trello.trello.pages.LoginAtlassianPage;
+import org.fundacionjala.trello.trello.ui.pages.HomePage;
+import org.fundacionjala.trello.trello.ui.pages.InitialPage;
+import org.fundacionjala.trello.trello.ui.pages.LoginAtlassianPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.fundacionjala.trello.trello.pages.TransporterPage;
+import org.fundacionjala.trello.trello.ui.pages.TransporterPage;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 

@@ -4,14 +4,13 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.fundacionjala.trello.core.context.Context;
 import org.fundacionjala.trello.trello.entities.User;
-import org.fundacionjala.trello.trello.pages.HomePage;
-import org.fundacionjala.trello.trello.pages.LoginAtlassianPage;
-import org.fundacionjala.trello.trello.pages.ProfilePage;
-import org.fundacionjala.trello.trello.pages.TransporterPage;
+import org.fundacionjala.trello.trello.ui.pages.HomePage;
+import org.fundacionjala.trello.trello.ui.pages.LoginAtlassianPage;
+import org.fundacionjala.trello.trello.ui.pages.ProfilePage;
+import org.fundacionjala.trello.trello.ui.pages.TransporterPage;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import java.net.MalformedURLException;
-import java.util.HashMap;
 import java.util.Map;
 
 public class UpdateProfileSteps {

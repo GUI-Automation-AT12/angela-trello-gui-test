@@ -2,7 +2,7 @@ package org.fundacionjala.trello.stepdefs;
 
 import org.fundacionjala.trello.core.context.Context;
 import org.fundacionjala.trello.trello.entities.User;
-import org.fundacionjala.trello.trello.pages.TransporterPage;
+import org.fundacionjala.trello.trello.ui.pages.TransporterPage;
 import io.cucumber.java.en.When;
 import java.net.MalformedURLException;
 
