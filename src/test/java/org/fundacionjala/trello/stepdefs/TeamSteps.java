@@ -99,7 +99,7 @@ public class TeamSteps {
      * Add members to the team.
      * @param members for the team.
      */
-    @And("I create the a team with the following members")
+    @And("I create a team with the following members")
     public void createATeamWithMembers(final List<String> members) {
         team.setMembers(members);
         teamPage = membersPopup.selectMember(team.getMembers());

@@ -1,6 +1,6 @@
 package org.fundacionjala.trello.unit;
 
-import org.fundacionjala.trello.core.utils.user.UserReader;
+import org.fundacionjala.trello.trello.utils.user.UserReader;
 import org.fundacionjala.trello.core.selenium.WebDriverManager;
 import org.fundacionjala.trello.trello.pages.InitialPage;
 import org.fundacionjala.trello.trello.pages.LoginAtlassianPage;

@@ -24,7 +24,7 @@ Feature: Create an organization
       | name        | Team Test UNIQUE_ID    |
       | type        | Education              |
       | description | Team description       |
-    And I create the a team with the following members
+    And I create a team with the following members
       | trello.proy1234@gmail.com |
     Then I should see team name in Teams page
     And the team name should be displayed on board menu

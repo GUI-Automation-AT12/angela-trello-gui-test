@@ -1,4 +1,4 @@
-package org.fundacionjala.trello.trello.utils;
+package org.fundacionjala.trello.trello.api;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;

@@ -1,4 +1,4 @@
-package org.fundacionjala.trello.stepdefs.hooks;
+package org.fundacionjala.trello.hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -6,7 +6,7 @@ import io.restassured.response.Response;
 import org.fundacionjala.trello.core.client.RequestManager;
 import org.fundacionjala.trello.core.context.Context;
 import org.fundacionjala.trello.trello.config.EnvironmentApi;
-import org.fundacionjala.trello.trello.utils.Authentication;
+import org.fundacionjala.trello.trello.api.Authentication;
 import org.json.JSONObject;
 
 public class ListHook {

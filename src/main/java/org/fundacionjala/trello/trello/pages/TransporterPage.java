@@ -1,7 +1,7 @@
 package org.fundacionjala.trello.trello.pages;
 
 import org.fundacionjala.trello.core.selenium.WebDriverManager;
-import org.fundacionjala.trello.trello.config.EnvironmentTrello;
+import org.fundacionjala.trello.trello.config.EnvironmentUi;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -49,7 +49,7 @@ public final class TransporterPage {
      * @throws MalformedURLException
      */
     public static void navigateToPage(final String pageName) throws MalformedURLException {
-        navigateToUrl(EnvironmentTrello.getInstance().getBaseUrl().concat(PAGE_URL.get(pageName)));
+        navigateToUrl(EnvironmentUi.getInstance().getBaseUrl().concat(PAGE_URL.get(pageName)));
     }
 
     /**
@@ -57,7 +57,7 @@ public final class TransporterPage {
      * @throws MalformedURLException
      */
     public static void navigateToPage() {
-        WebDriverManager.getInstance().getWebDriver().get(EnvironmentTrello.getInstance().getBaseUrl());
+        WebDriverManager.getInstance().getWebDriver().get(EnvironmentUi.getInstance().getBaseUrl());
     }
 
     /**

@@ -1,6 +1,6 @@
 package org.fundacionjala.trello.trello.pages.menu;
 
-import org.fundacionjala.trello.core.utils.WebElementsHelper;
+import org.fundacionjala.trello.core.selenium.WebElementsHelper;
 import org.fundacionjala.trello.trello.pages.BasePage;
 import org.openqa.selenium.By;
 

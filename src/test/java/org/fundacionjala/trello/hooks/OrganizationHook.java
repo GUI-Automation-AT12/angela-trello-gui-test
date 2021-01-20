@@ -1,18 +1,18 @@
-package org.fundacionjala.trello.stepdefs.hooks;
+package org.fundacionjala.trello.hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.restassured.response.Response;
 import org.fundacionjala.trello.core.client.RequestManager;
 import org.fundacionjala.trello.core.context.Context;
-import org.fundacionjala.trello.trello.api.OrganizationHookHelper;
+import org.fundacionjala.trello.trello.api.OrganizationHelper;
 import org.fundacionjala.trello.trello.config.EnvironmentApi;
-import org.fundacionjala.trello.trello.utils.Authentication;
+import org.fundacionjala.trello.trello.api.Authentication;
 import org.json.JSONObject;
 
 public class OrganizationHook {
     private Context context;
-    private OrganizationHookHelper organizationHookHelper;
+    private OrganizationHelper organizationHelper;
 
     /**
      * Initializes an instance of Context class.
@@ -21,7 +21,7 @@ public class OrganizationHook {
      */
     public OrganizationHook(final Context sharedContext) {
         this.context = sharedContext;
-        organizationHookHelper = new OrganizationHookHelper();
+        organizationHelper = new OrganizationHelper();
     }
 
     /**
@@ -43,7 +43,7 @@ public class OrganizationHook {
     @After(value = "@DeleteOrganization", order = 1)
     public void deleteOrganizationApi() {
         String idOrganization = context.getDataCollection("organization").get("id");
-        organizationHookHelper.deleteOrganization(idOrganization);
+        organizationHelper.deleteOrganization(idOrganization);
     }
 
     /**
@@ -53,6 +53,6 @@ public class OrganizationHook {
     public void deleteOrganization() {
         String url = context.getValueData("organization");
         String nameTeam = url.substring(url.lastIndexOf("/") + 1);
-        organizationHookHelper.deleteOrganization(nameTeam);
+        organizationHelper.deleteOrganization(nameTeam);
     }
 }

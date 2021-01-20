@@ -1,6 +1,6 @@
 package org.fundacionjala.trello.trello.pages;
 
-import org.fundacionjala.trello.core.utils.WebElementsHelper;
+import org.fundacionjala.trello.core.selenium.WebElementsHelper;
 import org.fundacionjala.trello.trello.entities.User;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

@@ -1,7 +1,7 @@
 package org.fundacionjala.trello.stepdefs;
 
 import org.fundacionjala.trello.core.context.Context;
-import org.fundacionjala.trello.core.utils.user.UserReader;
+import org.fundacionjala.trello.trello.utils.user.UserReader;
 import org.fundacionjala.trello.trello.pages.HomePage;
 import org.fundacionjala.trello.trello.pages.InitialPage;
 import org.fundacionjala.trello.trello.pages.LoginAtlassianPage;

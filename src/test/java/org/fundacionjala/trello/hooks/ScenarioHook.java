@@ -1,4 +1,4 @@
-package org.fundacionjala.trello.stepdefs.hooks;
+package org.fundacionjala.trello.hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;

@@ -1,8 +1,9 @@
-package org.fundacionjala.trello.core.utils;
+package org.fundacionjala.trello.core.selenium;
 
-import org.fundacionjala.trello.core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public final class WebElementsHelper {
@@ -84,5 +85,28 @@ public final class WebElementsHelper {
      */
     public static WebElement waitElement(final By byElem) {
         return WebDriverManager.getInstance().getWebDriverWait().until(ExpectedConditions.elementToBeClickable(byElem));
+    }
+
+    /**
+     * Drag and drop element.
+     * @param element to drag and drop
+     * @param target to drop element
+     */
+    public static void dragAndDropElement(final WebElement element, final WebElement target) {
+        Actions builder = new Actions(WebDriverManager.getInstance().getWebDriver());
+        waitElement(element);
+        waitElement(target);
+        builder.dragAndDrop(element, target).build().perform();
+    }
+
+    /**
+     * Drag and drop element.
+     * @param element to drag and drop
+     * @param target to drop element
+     */
+    public static void dragAndDropByElement(final By element, final By target) {
+        WebElement elementSource = WebDriverManager.getInstance().getWebDriver().findElement(element);
+        WebElement elementTarget = WebDriverManager.getInstance().getWebDriver().findElement(target);
+        dragAndDropElement(elementSource, elementTarget);
     }
 }

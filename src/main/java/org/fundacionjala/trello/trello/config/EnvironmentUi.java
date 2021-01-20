@@ -6,12 +6,12 @@ import org.fundacionjala.trello.core.utils.PropertyReader;
 /**
  * PropertiesReader class.
  */
-public final class EnvironmentTrello {
+public final class EnvironmentUi {
     private static final String PATH = "trello.properties";
-    private static EnvironmentTrello singleInstance;
+    private static EnvironmentUi singleInstance;
     private Properties property;
 
-    private EnvironmentTrello() {
+    private EnvironmentUi() {
         property = PropertyReader.readProperty(PATH);
     }
 
@@ -20,9 +20,9 @@ public final class EnvironmentTrello {
      *
      * @return PropertiesReader instance.
      */
-    public static EnvironmentTrello getInstance() {
+    public static EnvironmentUi getInstance() {
         if (singleInstance == null) {
-            singleInstance = new EnvironmentTrello();
+            singleInstance = new EnvironmentUi();
         }
         return singleInstance;
     }

@@ -14,7 +14,7 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UpdateProfileStep {
+public class UpdateProfileSteps {
     private LoginAtlassianPage loginAtlassianPage;
     private HomePage homePage;
     private Context context;
@@ -25,7 +25,7 @@ public class UpdateProfileStep {
      * Constructor.
      * @param sharedContext
      */
-    public UpdateProfileStep(final Context sharedContext) {
+    public UpdateProfileSteps(final Context sharedContext) {
         this.context = sharedContext;
         user = new User();
     }
@@ -56,7 +56,6 @@ public class UpdateProfileStep {
     public void verifyMmyProfileInformationIsUpdatedInProfileAndVisibilitySection() {
         SoftAssert softAssert = new SoftAssert();
         Map<String, String> actualProfileInfo = profilePage.getUserInformationAsMap(user.getUpdatedFields());
-        Map<String, String> userInfo = new HashMap<>();
         Map<String, String> expectedProfileInfo = user.getUpdatedInfo();
         actualProfileInfo.forEach((field, actualValue) -> {
             softAssert.assertEquals(actualValue, expectedProfileInfo.get(field));

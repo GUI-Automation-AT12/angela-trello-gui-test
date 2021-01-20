@@ -19,7 +19,7 @@ import org.testng.Assert;
 import java.net.MalformedURLException;
 import java.util.Map;
 
-public class BoardStepDef {
+public class BoardSteps {
     private Context context;
     private TopMenu topMenu;
     private AddComponentPopup addComponentPopup;
@@ -33,7 +33,7 @@ public class BoardStepDef {
      * Constructor.
      * @param sharedContext
      */
-    public BoardStepDef(final Context sharedContext) {
+    public BoardSteps(final Context sharedContext) {
         this.context = sharedContext;
         topMenu = new TopMenu();
         board = new Board();

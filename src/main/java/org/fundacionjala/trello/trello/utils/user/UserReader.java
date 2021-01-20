@@ -1,4 +1,4 @@
-package org.fundacionjala.trello.core.utils.user;
+package org.fundacionjala.trello.trello.utils.user;
 
 import org.fundacionjala.trello.core.utils.JsonReader;
 import org.fundacionjala.trello.trello.entities.User;
@@ -9,7 +9,6 @@ import java.util.Map;
 
 public final class UserReader {
     public static final String USER_FILE_PATH = "config/user.json";
-    public static final String EDITABLE_USER_PATH = "config/editableUser.json";
     private static final Map<String, String> TYPE_USERS = new HashMap<>();
     static {
         TYPE_USERS.put("Editable", "config/editableUser.json");

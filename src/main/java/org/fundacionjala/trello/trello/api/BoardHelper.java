@@ -2,14 +2,13 @@ package org.fundacionjala.trello.trello.api;
 
 import org.fundacionjala.trello.core.client.RequestManager;
 import org.fundacionjala.trello.trello.config.EnvironmentApi;
-import org.fundacionjala.trello.trello.utils.Authentication;
 
-public class BoardHookHelper {
+public class BoardHelper {
 
     /**
      * Initializes an instance of Context class.
      */
-    public BoardHookHelper() { }
+    public BoardHelper() { }
 
     /**
      * Delete a board.
